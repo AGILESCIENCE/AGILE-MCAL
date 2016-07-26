@@ -1,0 +1,53 @@
+SIMPLE  =                    T / file does conform to FITS standard
+BITPIX  =                    8 / number of bits per data pixel
+NAXIS   =                    0 / number of data axes
+EXTEND  =                    T / FITS dataset may contain extensions
+COMMENT   FITS (Flexible Image Transport System) format is defined in 'Astronomy
+COMMENT   and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H
+COMMENT
+END
+
+XTENSION= 'BINTABLE'           / binary table extension
+EXTNAME = 'SPECTRUM'           / Extension name
+BITPIX  =                    8 / 8-bit bytes
+NAXIS   =                    2 / 2-dimensional binary table
+NAXIS1  =                    8 / width of table in bytes
+NAXIS2  =                    1 / number of rows in table
+PCOUNT  =                    0 / size of special data area
+GCOUNT  =                    1 / one data group (required keyword)
+TFIELDS =                    2 / number of fields in each row
+TTYPE1  = 'CHANNEL '           / Pulse Invarient (PI) Channel
+TFORM1  = 'I       '           / data format of field: 2-byte INTEGER
+TTYPE2  = 'COUNTS  '           / Counts per second per channel
+TFORM2  = 'J       '           / data format of field: 4-byte INTEGER
+TUNIT2  = 'count   '           / physical unit of field
+POISSERR=                    T / poisson error assumed
+STAT_ERR=                    0 / no field STAT_ERR 
+SYS_ERR =                    0 / no field SYS_ERR 
+QUALITY =                    0 / no field QUALITY 
+GROUPING=                    0 / no field GROUPING
+AREASCAL=                  1.0 /  Area scaling factor, no field AREASCAL 
+BACKSCAL=                  1.0 /  Background scale factor, no field BACKSCAL 
+CORRSCAL=                  0.0 /  Correlation scale factor
+BACKFILE= 'NONE    '           / Background FITS file
+CORRFILE= 'NONE    '           / Correlation FITS file
+RESPFILE= 'none    '           / redistribution matrix
+ANCRFILE= 'none    '           / ancillary response
+CHANTYPE= 'PI      '           / channel type from detector electronic 
+DETCHANS=                  512 / total number possible channels
+HDUCLASS= 'OGIP    '           / format conforms to OGIP standard
+HDUCLAS1= 'SPECTRUM'           / PHA dataset (OGIP memo OGIP-92-007)
+HDUVERS1= '1.2.0   '           / Obsolete - included for backwards compatibility
+HDUVERS = '1.2.0   '           / Version of format (OGIP memo OGIP-92-007)
+HDUCLAS2= 'NET     '           / Bkgd-subtracted PHA Spectrum
+HDUCLAS3= 'COUNT   '           / PHA data stored in count/s
+TLMIN001=                    1 / Lowest legal channel number
+TLMAX001=                  512 / Highest legal channel number
+TELESCOP= 'AGILE'              / Telescope (mission) name
+INSTRUME= 'MCAL    '           / Instrument name
+FILTER  = 'NONE    '           /                                                                     '
+EXPOSURE=                  1.0 /  Exposure time
+PHAVERSN= '1992a   '           / obsolete
+CHANTYPE= 'PI      '           / channel type (PHA, PI etc)
+CREATOR = 'makepha '           / s/w task which wrote this dataset
+END

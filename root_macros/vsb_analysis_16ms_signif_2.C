@@ -1,0 +1,406 @@
+{
+	// MM 02/12/08 modificata per lavorare solo sul subset selezionato con l'analisi del 1/12 (HR>0.5)
+	// MM 19/11/08 modificata a partire da macro vsb_analysis_16ms_signif.C
+	//             analisi adatta ai candidati TGF triggerati su 64ms
+	// MM 18/11/08 valuta la significativita' degli eventi su diversi tempi scala
+	
+	TStyle *mcalstyle = new TStyle("mcalstyle","mcalview default style ");
+	mcalstyle->SetCanvasBorderMode(0);
+	mcalstyle->SetPadBorderMode(0);
+	mcalstyle->SetPadColor(0);
+	mcalstyle->SetCanvasColor(0);
+	mcalstyle->SetTitleColor(1); // 0
+	mcalstyle->SetStatColor(0);
+	mcalstyle->SetPalette(1,0);  // 2D graph colour version
+	//mcalstyle->SetPalette(9,0);  // 2D graph B/W version
+	mcalstyle->SetFrameBorderMode(0);
+	mcalstyle->SetLabelSize(0.05, "X");
+	mcalstyle->SetLabelSize(0.05, "Y");
+	gROOT->SetStyle("mcalstyle");
+	
+	int process_event_data = 1;
+
+	struct Trigger  {
+			int runid;
+			int trg;
+			double t0;
+			double tstop;
+			float ttot;
+			char date[20];
+			char time[20];
+			char type[5];
+			int sa;
+			int lng;
+			int subms;
+			int nrm;
+			int rmid;
+			int sitid;
+			float lon;
+			float lat;
+			float h;
+			float dt;
+			int ntrg;	// number of reconstructed sub-ms triggers
+			float mint;	// minimum time (should be ~-3. for datasets with correct pre-burst)
+			float dt0;	// time difference of the found trigger with respect to the initial t0 (bstart)
+			float tgrbini;
+			float t90;
+			float tbin;	// added since 15/10/08
+			float cbkg;	// added since 15/10/08 
+			int counts;
+			int cpeak;
+			float avgE;
+			int nEbins;
+			int c0;
+			int c1;
+			int c2;
+			int c3;
+			int x1;
+			int x2;
+			int x3;
+			int x4;
+			int x5;
+			int x6;
+			int x7;
+			int x8;
+			int x9;
+			int x10;
+			int x11;
+			int x12;
+			int x13;
+			int x14;
+			int x15;
+			int z1;
+			int z2;
+			int z3;
+			int z4;
+			int z5;
+			int z6;
+			int z7;
+			int z8;
+			int z9;
+			int z10;
+			int z11;
+			int z12;
+			int z13;
+			int z14;
+			int z15;
+			int c1;		// spatial zones (cuboni)
+			int c2;
+			int c3;
+			int c4;
+			int c5;
+			int c6;
+			int c7;
+			int c8;
+	};
+	
+	
+	
+	// ----------- read data and fill tree ---------------
+	
+	int nsel=259;
+	int srunid[nsel];
+	int strg[nsel];
+	ifstream in("/data1/mcal/data_analysis/VSB/analysis_08-11-22/triggers_HR-ge-05.csv", ios_base::in);
+	for (int i=0; i<nsel; i++) {
+		in >> srunid[i] >> strg[i];
+		// cout << srunid[i] << "  " << strg[i] << endl;
+	}
+	in.close();
+	
+	int nbin=8;
+	int nentries = 0;
+	int nc=0;
+	double t0prev = 0.;
+	int contact[10000];
+	int trg[10000];	
+	int flag[10000];
+	float tbin[8]={0.1, 0.2, 0.5, 1., 2., 4., 8., 16.};		// time bin for labels (in ms)
+	float sig[8][10000];
+	float t90[8][10000];
+	float pflux[8][10000];
+	float counts[8][10000];
+	float tgrbini[8][10000];
+	float avgE[8][10000];
+	
+	TString filenames[8];
+
+	filenames[0]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_1.dat";
+	filenames[1]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_2.dat";
+	filenames[2]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_5.dat";
+	filenames[3]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_10.dat";
+	filenames[4]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_20.dat";
+	filenames[5]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_40.dat";
+	filenames[6]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_80.dat";
+	filenames[7]="/data1/mcal/data_analysis/VSB/analysis_08-11-22/VSB_global_info_160.dat";
+	
+	Trigger atrg;
+	for (int i=0; i<8; i++) {
+		TTree tvsb;
+		tvsb.ReadFile(filenames[i], "runid/I:trg/I:t0/D:tstop/D:ttot/F:date/C:time/C:type/C:sa/I:lng/I:subms/I:nrm/I:rmid/I:sitid/I:lon/F:lat/F:h/F:dt/F:ntrg/I:mint/F:dt0/F:tgrbini/F:t90/F:tbin/F:cbkg/F:counts/I:cpeak/I:avgE/F:nEbins/I:c0/I:c1/I:c2/I:c3/I:x1/I:x2/I:x3/I:x4/I:x5/I:x6/I:x7/I:x8/I:x9/I:x10/I:x11/I:x12/I:x13/I:x14/I:x15/I:z1/I:z2/I:z3/I:z4/I:z5/I:z6/I:z7/I:z8/I:z9/I:z10/I:z11/I:z12/I:z13/I:z14/I:z15/I:c1/I:c2/I:c3/I:c4/I:c5/I:c6/I:c7/I:c8/I");
+		
+		// connect tree
+		tvsb.SetBranchAddress("runid", &atrg.runid);
+		tvsb.SetBranchAddress("trg", &atrg.trg);
+		tvsb.SetBranchAddress("t0", &atrg.t0);
+		tvsb.SetBranchAddress("tstop", &atrg.tstop);
+		tvsb.SetBranchAddress("ttot", &atrg.ttot);
+		tvsb.SetBranchAddress("date", &atrg.date);
+		tvsb.SetBranchAddress("time", &atrg.time);
+		tvsb.SetBranchAddress("type", &atrg.type);
+		tvsb.SetBranchAddress("sa", &atrg.sa);
+		tvsb.SetBranchAddress("lng", &atrg.lng);
+		tvsb.SetBranchAddress("subms", &atrg.subms);
+		tvsb.SetBranchAddress("nrm", &atrg.nrm);
+		tvsb.SetBranchAddress("rmid", &atrg.rmid);
+		tvsb.SetBranchAddress("sitid", &atrg.sitid);
+		tvsb.SetBranchAddress("lon", &atrg.lon);
+		tvsb.SetBranchAddress("lat", &atrg.lat);
+		tvsb.SetBranchAddress("h", &atrg.h);
+		tvsb.SetBranchAddress("dt", &atrg.dt);
+		tvsb.SetBranchAddress("ntrg", &atrg.ntrg);
+		tvsb.SetBranchAddress("mint", &atrg.mint);
+		tvsb.SetBranchAddress("dt0", &atrg.dt0);
+		tvsb.SetBranchAddress("tgrbini", &atrg.tgrbini);
+		tvsb.SetBranchAddress("t90", &atrg.t90);
+		tvsb.SetBranchAddress("tbin", &atrg.tbin);
+		tvsb.SetBranchAddress("cbkg", &atrg.cbkg);
+		tvsb.SetBranchAddress("counts", &atrg.counts);
+		tvsb.SetBranchAddress("cpeak", &atrg.cpeak);
+		tvsb.SetBranchAddress("avgE", &atrg.avgE);
+		tvsb.SetBranchAddress("nEbins", &atrg.nEbins);
+		tvsb.SetBranchAddress("c0", &atrg.c0);
+		tvsb.SetBranchAddress("c1", &atrg.c1);
+		tvsb.SetBranchAddress("c2", &atrg.c2);
+		tvsb.SetBranchAddress("c3", &atrg.c3);
+		tvsb.SetBranchAddress("x1", &atrg.x1);
+		tvsb.SetBranchAddress("x2", &atrg.x2);
+		tvsb.SetBranchAddress("x3", &atrg.x3);
+		tvsb.SetBranchAddress("x4", &atrg.x4);
+		tvsb.SetBranchAddress("x5", &atrg.x5);
+		tvsb.SetBranchAddress("x6", &atrg.x6);
+		tvsb.SetBranchAddress("x7", &atrg.x7);
+		tvsb.SetBranchAddress("x8", &atrg.x8);
+		tvsb.SetBranchAddress("x9", &atrg.x9);
+		tvsb.SetBranchAddress("x10", &atrg.x10);
+		tvsb.SetBranchAddress("x11", &atrg.x11);
+		tvsb.SetBranchAddress("x12", &atrg.x12);
+		tvsb.SetBranchAddress("x13", &atrg.x13);
+		tvsb.SetBranchAddress("x14", &atrg.x14);
+		tvsb.SetBranchAddress("x15", &atrg.x15);
+		tvsb.SetBranchAddress("z1", &atrg.z1);
+		tvsb.SetBranchAddress("z2", &atrg.z2);
+		tvsb.SetBranchAddress("z3", &atrg.z3);
+		tvsb.SetBranchAddress("z4", &atrg.z4);
+		tvsb.SetBranchAddress("z5", &atrg.z5);
+		tvsb.SetBranchAddress("z6", &atrg.z6);
+		tvsb.SetBranchAddress("z7", &atrg.z7);
+		tvsb.SetBranchAddress("z8", &atrg.z8);
+		tvsb.SetBranchAddress("z9", &atrg.z9);
+		tvsb.SetBranchAddress("z10", &atrg.z10);
+		tvsb.SetBranchAddress("z11", &atrg.z11);
+		tvsb.SetBranchAddress("z12", &atrg.z12);
+		tvsb.SetBranchAddress("z13", &atrg.z13);
+		tvsb.SetBranchAddress("z14", &atrg.z14);
+		tvsb.SetBranchAddress("z15", &atrg.z15);
+		tvsb.SetBranchAddress("c1", &atrg.c1);
+		tvsb.SetBranchAddress("c2", &atrg.c2);
+		tvsb.SetBranchAddress("c3", &atrg.c3);
+		tvsb.SetBranchAddress("c4", &atrg.c4);
+		tvsb.SetBranchAddress("c5", &atrg.c5);
+		tvsb.SetBranchAddress("c6", &atrg.c6);
+		tvsb.SetBranchAddress("c7", &atrg.c7);
+		tvsb.SetBranchAddress("c8", &atrg.c8);
+	
+		nentries = tvsb.GetEntries();
+		cout << i << " Total number of entries = " << nentries << endl;
+	
+		// ----------- process entries & fill arrays ---------------
+		nc=0;
+		double t0prev = 0.;
+		for (int j=0; j<nentries; j++) {
+			tvsb.GetEntry(j);
+			// main selection
+			if ( atrg.t0 != t0prev   && atrg.mint<-1. && (atrg.runid<7302 || atrg.runid>7342) && (atrg.runid<6068 || atrg.runid>6140)) {	// atrg.mint<-1. && fabs(atrg.tgrbini)<0.500 && atrg.counts>0  && atrg.cbkg>0
+			
+				if (i==0) {	// to do only for the first dataset (common information)
+					contact[nc] = atrg.runid;
+					trg[nc]     = atrg.trg;
+					if(atrg.type[0]=='G') flag[nc]=1;	// 1== GRB; 0== BUS
+					else flag[nc]=0;
+				}
+				if (fabs(atrg.tgrbini)<0.060 &&  atrg.counts>0  && atrg.cbkg>0) {
+					sig[i][nc] = atrg.cpeak/sqrt(atrg.cbkg);
+					t90[i][nc] = atrg.t90;
+					tgrbini[i][nc] = atrg.tgrbini;
+					counts[i][nc] = atrg.counts;
+					avgE[i][nc] = atrg.avgE;
+					pflux[i][nc] = atrg.cpeak;	// counts/millisecond
+				}
+				else {
+					sig[i][nc]= 0.;
+					t90[i][nc] = 0.;
+					tgrbini[i][nc] = atrg.tgrbini;
+					counts[i][nc] = 0.;
+					pflux[i][nc] = 0.;
+					avgE[i][nc] = 0.;
+				}
+				nc++;
+			}
+			//else cout << "*** same as previous trigger " << atrg.runid << "-" << atrg.trg << endl;
+			t0prev = atrg.t0;
+		}
+	}	
+	
+	// show data and fill graphs
+	
+	TGraph *gGRB = new TGraph(1);
+	TGraph *gBUS = new TGraph(1);
+	int nGRB=0;
+	int nBUS=0;
+	cout << endl << "number of events: " << nc << endl;
+	cout << endl << "GRB events" << endl;
+	
+	printf("\n----------------------------------- Significance (n. sigma) --------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (h=0; h<nsel; h++) {
+		for (int j=0; j<nc; j++) {
+			if (contact[j]!=srunid[h] || trg[j]!=strg[h]) continue;
+			
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", fabs(tgrbini[k][j])<0.016 ? pflux[k][j] : 0.); // sig[k][j] pflux
+			printf("\n");
+			
+			gGRB->SetPoint(nGRB, sig[0][j], sig[5][j]);
+			nGRB++;
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	/*
+	printf("\n----------------------------------- Significance (n. sigma) --------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", sig[k][j]);
+			printf("\n");
+			
+			gGRB->SetPoint(nGRB, sig[0][j], sig[5][j]);
+			nGRB++;
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	printf("\n----------------------------------- Duration (ms) -------------------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", 1000.*t90[k][j]);
+			printf("\n");
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	printf("\n----------------------------------- Peak flux (counts/ms) -------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", pflux[k][j]);
+			printf("\n");
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	printf("\n----------------------------------- Fluence (counts) ---------------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", counts[k][j]);
+			printf("\n");
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	printf("\n----------------------------------- Average Energy (MeV) -----------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", avgE[k][j]);
+			printf("\n");
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	printf("\n----------------------------------- t_GRB - t_0 (ms) -----------------------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%8.4f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%8.4f  ", tgrbini[k][j]);
+			printf("\n");
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+
+	// write single burst info
+	
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==1) {
+			printf("\n--------- Trigger %6d-%d ----------------------------------\n", contact[j], trg[j]);
+			printf("t_bin    sigma     t90     P_flux     Fluence   avg_E   T_ini\n-------------------------------------------------------------\n");
+			for (int k=0; k<nbin; k++) printf("%6.2f   %6.2f   %6.2f   %6.2f   %6.2f   %6.2f   %8.4f\n", tbin[k], sig[k][j], 1000.*t90[k][j], pflux[k][j], counts[k][j], avgE[k][j], tgrbini[k][j]);
+			printf("\n-------------------------------------------------------------\n");
+		}
+	}	
+	
+	cout << endl << "BUS events" << endl;
+	
+	printf("\n----------------------------------- BUS EVENTS Significance (n. sigma) ---------------------------\nid    orbit   trg  ");
+	for (int k=0; k<nbin; k++) printf("%6.2f  ", tbin[k]);
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==0) {
+			printf("%4d  %6d  %3d  ", j, contact[j], trg[j]);
+			for (int k=0; k<nbin; k++) printf("%6.2f  ", sig[k][j]);
+			printf("\n");
+			
+			gBUS->SetPoint(nBUS, sig[0][j], sig[5][j]);
+			nBUS++;
+		}
+	}
+	printf("\n--------------------------------------------------------------------------------------------------\n");
+	
+	for (int j=0; j<nc; j++) {
+		if (flag[j]==0) {
+			printf("\n--------- BUS Trigger %6d-%d ------------------------------\n", contact[j], trg[j]);
+			printf("t_bin    sigma     t90     P_flux     Fluence   avg_E   T_ini\n-------------------------------------------------------------\n");
+			for (int k=0; k<nbin; k++) printf("%6.2f   %6.2f   %6.2f   %6.2f   %6.2f   %6.2f   %8.4f\n", tbin[k], sig[k][j], 1000.*t90[k][j], pflux[k][j], counts[k][j], avgE[k][j], tgrbini[k][j]);
+			printf("\n-------------------------------------------------------------\n");
+		}
+	}	
+	
+	// ----------- graphic section ---------------
+*/	
+	TCanvas c1("c1", "c1", 800, 1000);
+	c1.cd(1);
+	// gBUS->GetHistogram()->GetXaxis()->SetRangeUser(0., 100.);
+	// gBUS->GetHistogram()->GetYaxis()->SetRangeUser(0., 100.);
+	// gBUS->SetMarkerStyle(2);
+	// gBUS->SetMarkerColor(2);
+	// gBUS->Draw("AP");
+	gGRB->SetMarkerStyle(2);
+	gGRB->Draw("AP");
+
+}

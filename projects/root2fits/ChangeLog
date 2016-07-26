@@ -1,0 +1,12 @@
+11 July 2014
+TAG CVS: V_1_1_0
++ 06/04/2009 major change: handles fits files directly without linking to mcalfits lib.
+             Directly writes columns like program mcalcor2fits, do be faster.
+	     Results consistency with old version checked with fdiff.
++ 13/10/2008 Now works also for 3917 and 3909 data. Minor change. 
+
+21 August 2008
+TAG CVS: V_1_0_0
+project root2fits by M. Marisaldi (marisaldi@iasfbo.inaf.it)
+converts a root RT photon list in a fits file for analysis with different sw tools
+

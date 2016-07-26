@@ -1,0 +1,13 @@
+Project: hkmonitor
+Program to extract relevant information from HK data packets (32.01)
+and plot results as a function of time or other variables
+
+Usage:
+
+> hkmonitor <32.01_file_name> [<root_file>]
+
+File <32.01_file_name> is analized according to instructions specified in configuration file
+$MCALSW/share/hkmonitor_conf/hkmonitor_configuration.conf, and graphics and other products are stored
+in <root_file>.
+If <root_file> is missing, the file hkm.root is created in the current directory.
+

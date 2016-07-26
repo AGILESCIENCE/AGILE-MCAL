@@ -1,0 +1,5 @@
+project: mcalibration
+
+author: Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: 	perform analysis on MCAL stand-alone calibration data with collimated sources (IASF-Bo July 2005)

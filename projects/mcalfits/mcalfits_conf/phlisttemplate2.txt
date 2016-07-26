@@ -1,0 +1,37 @@
+SIMPLE  =                    T / file does conform to FITS standard
+BITPIX  =                    8 / number of bits per data pixel
+NAXIS   =                    0 / number of data axes
+EXTEND  =                    T / FITS dataset may contain extensions
+COMMENT   FITS (Flexible Image Transport System) format is defined in 'Astronomy
+COMMENT   and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H
+COMMENT
+END
+
+XTENSION= 'BINTABLE'           / binary table extension
+EXTNAME = 'PHOTLIST'           / Extension name
+BITPIX  =                    8 / 8-bit bytes
+NAXIS   =                    2 / 2-dimensional binary table
+NAXIS1  =                    8 / width of table in bytes
+NAXIS2  =                    1 / number of rows in table
+PCOUNT  =                    0 / size of special data area
+GCOUNT  =                    1 / one data group (required keyword)
+OBSID   =                    0 / orbit id
+TFIELDS =                    5 / number of fields in each row
+TTYPE1  = 'TIME    '           / Event time tag (TT)
+TFORM1  = '1D      '          / data format of field: 8-byte FLOAT
+TUNIT1  = 'seconds '           / physical unit of field
+TTYPE2  = 'ENERGY  '           / Event's total energy (MeV)
+TFORM2  = '1E      '          / data format of field: 4-byte FLOAT
+TUNIT2  = 'MeV     '           / physical unit of field
+TTYPE3  = 'MULT    '           / Event's multiplicity
+TFORM3  = '1I      '           / data format of field: 1-byte CHAR
+TTYPE4  = 'MAXEBAR '           / Address of the bar with max E deposit
+TFORM4  = '1I      '           / data format of field: 1-byte CHAR
+TTYPE5  = 'POS     '           / Event's position in the MAXEBAR bar
+TFORM5  = '1E      '           / data format of field: 4-byte FLOAT
+TUNIT5  = 'cm      '           / physical unit of field
+TELESCOP= 'AGILE'              / Telescope (mission) name
+INSTRUME= 'MCAL    '           / Instrument name
+FILTER  = 'NONE    '           /                                                                     '
+CREATOR = 'root2fits '           / s/w task which wrote this dataset
+END

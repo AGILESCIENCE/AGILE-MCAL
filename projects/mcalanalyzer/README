@@ -1,0 +1,11 @@
+Project: mcalanalizer
+Program for conversion of lv1 files to ROOT format, construction of basic histograms,
+application of default analysis routines and basic diagnostic.
+
+Usage: mcalanalizer <lv1_file>
+or
+mcalanalizer <H_file>
+where <lv1_file> is a level1 fits file and <H_file> is the histogram file stored in $MCALSW/bin/mcalsw_output/H.
+If applied on a <H_file>, no conversion is performed and only analysis routines are applied to already
+produced histograms.
+

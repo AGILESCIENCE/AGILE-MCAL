@@ -1,0 +1,14 @@
+# KDevelop Custom Project File List
+Makefile
+Makefile~
+mcalimaging.kdevelop
+code/mcalimaging.cc
+code/mcalimaging.h
+code/init.cpp
+code/output.cpp
+code/process.cpp
+code/track.cpp
+code/response.cpp
+code/mcalguess.cpp
+code/mcalguess.h
+code/mcalimagingLinkDef.h

@@ -1,0 +1,12 @@
+29 February 2008
+TAG CVS: V_1_1_2
++ 28/02/08 can work in batch mode with command line options
+
+27 April 2007
+TAG CVS: V_1_1_1
++ modified main to properly work on already selected datasets
+
+16 March 2007
+TAG CVS: V_1_1_0
+First tagged version after project splitting from old BUILD_MCALSW repository
+

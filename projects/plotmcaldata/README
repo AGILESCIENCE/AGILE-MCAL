@@ -1,0 +1,6 @@
+Project: plotmcaldata
+Program for plotting aggregate ratemeters and HK data for monitoring purpose
+
+Usage: plotmcaldata [<sci-RM_global_file>] [<HK_global_file>]
+
+

@@ -1,0 +1,5 @@
+Project: mcalselect
+Program for making selections on dataset 
+
+Usage: viewrun <RT_file>
+where <RT_file> is the events file stored in $MCALSW/bin/mcalsw_output/RT

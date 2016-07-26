@@ -1,0 +1,22 @@
+# limiti dei canali E del detector per il spectral fitting dei Ratemeters Scientifici
+# M. Marisaldi 9/10/07 
+# file format: 
+#
+# ch_number      Elower    Eupper(Gev)
+# BEGINS WITH 1
+ 
+    1            0.000170   0.000350 
+    2            0.000350   0.000700
+    3            0.000700   0.001400 
+    4            0.001400   0.002800
+    5            0.002800   0.005600 
+    6            0.005600   0.011200 
+    7            0.011200   0.022400 
+    8            0.022400   0.044800 
+    9            0.044800   0.089600 
+   10            0.089600   1.433600 
+    
+     
+    
+  
+  

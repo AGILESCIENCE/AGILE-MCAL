@@ -1,0 +1,244 @@
+{
+	// MM 05/11/09 time and local time info are included
+	// MM 03/11/09 plots the trigger population with geographic and boost info
+	// see mcal@agilehp1:~/data_analysis/VSB/offline_trigger_search/README_offline.txt for the process flow
+	// MM 07/10/09 plots the trigger population detected with the offline trigger search
+	
+	gROOT->Reset();
+	TStyle *mcalstyle = new TStyle("mcalstyle","mcalview default style ");
+	mcalstyle->SetCanvasBorderMode(0);
+	mcalstyle->SetPadBorderMode(0);
+	mcalstyle->SetPadColor(0);
+	mcalstyle->SetCanvasColor(0);
+	mcalstyle->SetTitleColor(1); // 0
+	mcalstyle->SetStatColor(0);
+	mcalstyle->SetPalette(1,0);  // 2D graph colour version
+	//mcalstyle->SetPalette(9,0);  // 2D graph B/W version
+	mcalstyle->SetFrameBorderMode(0);
+	mcalstyle->SetLabelSize(0.07, "XYZ");
+	mcalstyle->SetTitleSize(0.07, "XYZ");
+// 	mcalstyle->SetLabelSize(0.05, "Y");
+// 	mcalstyle->SetLabelSize(0.05, "Z");
+	mcalstyle->SetTitleOffset(1.4, "XYZ");
+	gROOT->SetStyle("mcalstyle");
+
+	struct offline_trg {
+		int contact;
+		int id;
+		double t0;
+		int counts;
+		float hr;
+		float dt;
+		float lon;
+		float lat;
+		float h;
+		float etheta;
+		float ephi;
+		int year;
+		int month;
+		int day;
+		int hour;
+		int min;
+		int sec;
+		int usec;
+		float loctime;
+		int boost;
+	};
+	offline_trg atrg;
+	TTree ttrg;
+	ttrg.ReadFile("/home/mcal/data_analysis/VSB/offline_trigger_search/trg_005000-012477_processed_3.dat", "contact/I:id/I:t0/D:counts/I:hr/F:dt/F:lon/F:lat/F:h/F:etheta/F:ephi/F:year/I:month/I:day/I:hour/I:min/I:sec/I:usec/I:loctime/F:boost/I");
+	ttrg.SetBranchAddress("contact",&atrg.contact);
+	ttrg.SetBranchAddress("id",&atrg.id);
+	ttrg.SetBranchAddress("t0",&atrg.t0);
+	ttrg.SetBranchAddress("counts",&atrg.counts);
+	ttrg.SetBranchAddress("hr",&atrg.hr);
+	ttrg.SetBranchAddress("dt",&atrg.dt);
+	ttrg.SetBranchAddress("lon",&atrg.lon);
+	ttrg.SetBranchAddress("lat",&atrg.lat);
+	ttrg.SetBranchAddress("h",&atrg.h);
+	ttrg.SetBranchAddress("etheta",&atrg.etheta);
+	ttrg.SetBranchAddress("ephi",&atrg.ephi);
+	ttrg.SetBranchAddress("year",&atrg.year);
+	ttrg.SetBranchAddress("month",&atrg.month);
+	ttrg.SetBranchAddress("day",&atrg.day);
+	ttrg.SetBranchAddress("hour",&atrg.hour);
+	ttrg.SetBranchAddress("min",&atrg.min);
+	ttrg.SetBranchAddress("sec",&atrg.sec);
+	ttrg.SetBranchAddress("usec",&atrg.usec);
+	ttrg.SetBranchAddress("loctime",&atrg.loctime);
+	ttrg.SetBranchAddress("boost",&atrg.boost);
+	int nentries = ttrg.GetEntries();
+	cout << "Total number of entries = " << nentries << endl;
+	
+/*	TH3F *topology = new TH3F("topology", "topology", 100, 0., 100.,  50, 0., 0.010, 50, 0., 5.); // counts, dt, hr
+	
+	// build histo for waiting times
+	float tini = 0.1;
+	float tfin = 100000.;
+	int nbins = 24;
+	float fact = (10.)**(1./4.);
+	float abin[42];
+	abin[0] = 0.1;
+	for (int i=1; i<=nbins; i++) abin[i] = abin[i-1]*fact;
+	TH1F *deltat = new TH1F("deltat","deltat", nbins, abin);	
+	
+	int index = 0;
+	int sel = 0;
+	char aux[10], path[100];
+	int trgid, counts[100000], contact[100000], bflag[100000];
+	double t0[100000], hr[100000], dt[100000], lon[100000], lat[100000], h[100000], etheta[100000], ephi[100000];
+	while (inFile >> contact[sel] >> trgid >> t0[sel] >> counts[sel] >> hr[sel] >> dt[sel] >> lon[sel] >> lat[sel] >> h[sel] >> etheta[sel] >> ephi[sel] >> bflag[sel]) {
+		//g1->SetPoint(index, hr, counts);
+		if (bflag[sel]==0) topology->Fill(counts[sel], dt[sel], hr[sel]);
+		//if (counts[sel]>=50. || dt[sel]>=0.010 || hr[sel]>=5.) cout << path << "  " << t0 << "  " << counts[sel] << "  " << hr[sel] << "  " << dt[sel] << endl;
+		// do main selection
+		if (hr[sel]>=0.5 && counts[sel]>=10 && bflag[sel]==0) {
+			printf("%4d \t%06d \t%.6f \t%d \t%.2f \t%.6f\n", sel, contact[sel], t0[sel], counts[sel], hr[sel], dt[sel]);
+			if (sel) deltat->Fill(t0[sel]-t0[sel-1]);
+			sel++;
+		}
+		
+		index++;
+	}
+	cout << "Processed " << index << " triggers" << endl;
+	cout << "Selected  " << sel << " triggers" << endl;
+	inFile.close();
+	
+	TCanvas *c9 = new TCanvas ("c9", "c9", 800, 600);
+	//g1->Draw("AP");
+	c9->Divide(3,2);
+	
+	c9->cd(1);
+	gPad->SetLogz(1);
+	TH2F *zyt = topology->Project3D("zy");
+	zyt->SetStats(0);
+	zyt->SetTitle("HR vs. dt");
+	zyt->GetXaxis()->SetTitle("dt");
+	zyt->GetXaxis()->CenterTitle();
+	zyt->GetYaxis()->SetTitle("HR");
+	zyt->GetYaxis()->CenterTitle();
+	zyt->GetYaxis()->SetTitleOffset(2.);
+	zyt->DrawClone("colZ");
+	
+	c9->cd(2);
+	gPad->SetLogz(1);
+	TH2F *xyt = topology->Project3D("yx");
+	xyt->SetStats(0);
+	xyt->SetTitle("dt vs. counts");
+	xyt->GetXaxis()->SetTitle("counts");
+	xyt->GetXaxis()->CenterTitle();
+	xyt->GetYaxis()->SetTitle("dt");
+	xyt->GetYaxis()->CenterTitle();
+	xyt->DrawClone("colZ");
+	
+	c9->cd(3);
+	gPad->SetLogz(1);
+	TH2F *zxt = topology->Project3D("zx");
+	zxt->SetStats(0);
+	zxt->SetTitle("HR vs. counts");
+	zxt->GetXaxis()->SetTitle("counts");
+	zxt->GetXaxis()->CenterTitle();
+	zxt->GetYaxis()->SetTitle("HR");
+	zxt->GetYaxis()->CenterTitle();
+	zxt->GetYaxis()->SetTitleOffset(2.);
+	zxt->DrawClone("colZ");	
+	
+	// plot slices
+	
+	c9->cd(4);
+	gPad->SetLogz(1);
+	topology->GetZaxis()->SetRange(0, 5);
+	TH2F *xyt_HR1 = topology->Project3D("yx");
+	xyt_HR1->SetStats(0);
+	xyt_HR1->SetTitle("dt vs. counts - HR < 0.5");
+	xyt_HR1->GetXaxis()->SetTitle("counts");
+	xyt_HR1->GetXaxis()->CenterTitle();
+	xyt_HR1->GetYaxis()->SetTitle("dt");
+	xyt_HR1->GetYaxis()->CenterTitle();
+	xyt_HR1->DrawClone("colZ");
+	
+	c9->cd(5);
+	gPad->SetLogz(1);
+	topology->GetZaxis()->SetRange(6, 10);
+	TH2F *xyt_HR2 = topology->Project3D("yx");
+	xyt_HR2->SetStats(0);
+	xyt_HR2->SetTitle("dt vs. counts - 0.5 < HR < 1.");
+	xyt_HR2->GetXaxis()->SetTitle("counts");
+	xyt_HR2->GetXaxis()->CenterTitle();
+	xyt_HR2->GetYaxis()->SetTitle("dt");
+	xyt_HR2->GetYaxis()->CenterTitle();
+	xyt_HR2->DrawClone("colZ");
+	
+	c9->cd(6);
+	gPad->SetLogz(1);
+	topology->GetZaxis()->SetRange(11, 50);
+	TH2F *xyt_HR3 = topology->Project3D("yx");
+	xyt_HR3->SetStats(0);
+	xyt_HR3->SetTitle("dt vs. counts - HR > 1.");
+	xyt_HR3->GetXaxis()->SetTitle("counts");
+	xyt_HR3->GetXaxis()->CenterTitle();
+	xyt_HR3->GetYaxis()->SetTitle("dt");
+	xyt_HR3->GetYaxis()->CenterTitle();
+	xyt_HR3->DrawClone("colZ");
+	
+	
+	
+	TCanvas *c10 = new TCanvas ("c10", "c10", 800, 600);
+	//topology->Draw("BOX");
+	c10->Divide(2,2);
+	
+	c10->cd(1);
+	topology->GetZaxis()->SetRange(1, 50);
+	topology->GetXaxis()->SetRange(1, 100);
+	TH1F *x = topology->Project3D("x");
+	//x->SetStats(0);
+	x->SetTitle("counts");
+	x->GetXaxis()->SetTitle("counts");
+	x->GetXaxis()->CenterTitle();
+	x->GetXaxis()->SetLabelSize(0.06);
+	x->GetXaxis()->SetTitleSize(0.06);
+	x->GetXaxis()->SetTitleOffset(0.8);
+	x->GetYaxis()->SetTitle("n.");
+	x->GetYaxis()->CenterTitle();
+	x->GetYaxis()->SetLabelSize(0.06);
+	x->GetYaxis()->SetTitleSize(0.06);
+	x->GetYaxis()->SetTitleOffset(0.8);
+	x->DrawClone();
+
+	c10->cd(2);
+	//topology->GetZaxis()->SetRange(6, 50);
+	TH1F *y = topology->Project3D("y");
+	//y->SetStats(0);
+	y->SetTitle("duration");
+	y->GetXaxis()->SetTitle("duration");
+	y->GetXaxis()->CenterTitle();
+	y->GetXaxis()->SetLabelSize(0.06);
+	y->GetXaxis()->SetTitleSize(0.06);
+	y->GetXaxis()->SetTitleOffset(0.8);
+	y->GetYaxis()->SetTitle("n.");
+	y->GetYaxis()->CenterTitle();
+	y->GetYaxis()->SetLabelSize(0.06);
+	y->GetYaxis()->SetTitleSize(0.06);
+	y->GetYaxis()->SetTitleOffset(0.8);
+	y->DrawClone();
+
+	c10->cd(3);
+	//topology->GetZaxis()->SetRange(6, 50);
+	TH1F *z = topology->Project3D("z");
+	//z->SetStats(0);
+	z->SetTitle("HR");
+	z->GetXaxis()->SetTitle("HR");
+	z->GetXaxis()->CenterTitle();
+	z->GetXaxis()->SetLabelSize(0.06);
+	z->GetXaxis()->SetTitleSize(0.06);
+	z->GetXaxis()->SetTitleOffset(0.8);
+	z->GetYaxis()->SetTitle("n.");
+	z->GetYaxis()->CenterTitle();
+	z->GetYaxis()->SetLabelSize(0.06);
+	z->GetYaxis()->SetTitleSize(0.06);
+	z->GetYaxis()->SetTitleOffset(0.8);
+	z->DrawClone();
+
+	c10->cd(4);
+	deltat->Draw();*/
+}

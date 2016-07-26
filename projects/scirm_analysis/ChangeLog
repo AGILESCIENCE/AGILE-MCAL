@@ -1,0 +1,8 @@
+11 July 2014
+CVS TAG: V_1_0_0
+02/04/2014 added doConvertFits2() to write data in root format
+
+01/02/2012 added -8.192 to time[] to synchronize with 3908 data
+27/08/09 added -t0, -grb, -bkg options (like project plotgrb) to calculate dead time for GRB analysis
+15/06/09 created project
+

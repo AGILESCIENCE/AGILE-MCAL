@@ -1,0 +1,43 @@
++ 03/06/10 set pdhuformat=kTRUE also if INSTRUME==GRID. needed to work on DAFNE simulations by Pavia INFN team
++ 21/05/10 commented out SaveToFile() methods for analysis routine: save only RT and H files
++ 21/09/09 modified check on previous trigger time in process3908.cpp (very important: otherwise some triggers are neglected): != rather than > tpr
++ 08/04/09 note: cannot comment out analysis routines easily, at least SciRM are needed
++ 29/01/09 process3908(): now works even if the BOOST file is not found; in this case prints 'UNK' label
++ 29/10/08 process3908(): reads also MCAL16MS and MCAL1MS flags for the "missing pre-burst" issue debugging
+           added these info to output file (processing tools to be modified accordingly).
+
+21 August 2008
+TAG CVS: V_1_1_6
++ 21/08/08 corrected for time generation in tmp_grb file (mcal-grb.dat file online)
++ 16/06/08 process3908(): modified data types for keywords BSCIRTMT and BKGERTMT for sub-ms trigger management
++ 20/03/08 process3908(): corrected bug to avoid fake triggers with online pipeline: included UNK label
+
+29 February 2007
+TAG CVS: V_1_1_5
++ 27/02/08 process3908(): include trigger RM and SIT info into output file
++ 25/02/08 moved job on 3908 fits file on dedicated routine process3908() on file process3908.cpp
+           added file mcalanalyzer.h
+
+06 February 2007
+TAG CVS: V_1_1_4
++ 03/01/08 added check on memory chip on 3908 data
++ 02/01/08 minor change in main: modified comment for timing not monotonic
+
+06 December 2007
+TAG CVS: V_1_1_3
++ 03/12/07 added code for rapid check on 3908 packet data
++ 03/12/07 parsing of command line arguments
+
+19 May 2007
+TAG CVS: V_1_1_2
++ 14/5/07 manage global file update for 3913 files
++ 14/5/07 from now on this version is good for flight data (PDHU-style) analysis only
+
+16 March 2007
+TAG CVS: V_1_1_1
++ repristinated automatic detection of DFE-TE / PDHU data
+
+16 March 2007
+TAG CVS: V_1_1_0
+First tagged version after project splitting from old BUILD_MCALSW repository
+

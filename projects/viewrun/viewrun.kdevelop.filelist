@@ -1,0 +1,5 @@
+# KDevelop Custom Project File List
+Makefile
+viewrun.kdevelop
+code/viewrun.cpp
+code/version.h

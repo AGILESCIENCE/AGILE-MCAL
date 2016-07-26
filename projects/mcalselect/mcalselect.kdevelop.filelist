@@ -1,0 +1,6 @@
+# KDevelop Custom Project File List
+Makefile
+Makefile~
+mcalselect.kdevelop
+code/mcalselect.cc
+code/version.h

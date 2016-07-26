@@ -1,0 +1,88 @@
+
+Container of utility software for MCAL data analysis
+
+Martino Marisaldi (marisaldi@iasfbo.inaf.it) - INAF/IASF-Bo - 27-Apr-2007 
+
+Installation:
+
+> make checkout
+> make install
+
+
+List of projects:
+
+----------------------------------------------------
+
+MCVLib
+
+Main C++ class library for MCAL data analysis. It is based on the classes
+developed for program mcalview2.
+It provides a platform for building high level MCAL data analysis software.
+
+Dynamic library libMCV.so can be loaded in an interpreted ROOT session typing:
+.L $(MCALSW)/lib/libMCV.so
+so that classes in libMCV can be used in ROOT macros.
+
+----------------------------------------------------
+
+viewrun
+
+Interactive program. It works on an H* file created with program
+mcalanalyzer Provides visualization of the basic histograms in a graphics
+environment. Provides limited analysis capabilities on
+data and no selection capabilities.It links to libMCV.a library. 
+
+Usage: viewrun H<run-id>_<packet-type>.root
+
+----------------------------------------------------
+
+mcalanalyzer
+
+Batch program. 
+
+----------------------------------------------------
+
+mcalselect
+
+----------------------------------------------------
+
+mcalgrid
+
+----------------------------------------------------
+
+mcalimaging
+
+----------------------------------------------------
+
+hkmonitor
+
+----------------------------------------------------
+
+hkviewer
+
+----------------------------------------------------
+
+convPKP3908toRoot
+
+----------------------------------------------------
+
+viewbsr
+
+----------------------------------------------------
+
+viewbsr_ric
+
+----------------------------------------------------
+
+mcalibration
+
+----------------------------------------------------
+
+
+
+
+
+
+
+
+

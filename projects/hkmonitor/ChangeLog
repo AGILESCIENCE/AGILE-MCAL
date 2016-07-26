@@ -1,0 +1,28 @@
+21 August 2008
+TAG CVS: V_1_1_6
++ 20/05/2008 write a string to stdout with average and stddev of all parameters, on orbit basis
+             to extract info: redirect output and make a grep!
+
+31 July 2007
+TAG CVS: V_1_1_5
++ 30/7/07 TT->UTC time conversion. Can work properly on corrected files only
+
+08 June 2007
+TAG CVS: V_1_1_4
++ includes partial and rejected MCAL burst triggers in configuration file
+
+19 May 2007
+TAG CVS: V_1_1_3
++ if absolute time is chosen, use event time as is, not corrected for any offset
+
+TAG CVS: V_1_1_2
+
+28 April 2007
+TAG CVS: V_1_1_1
++ apply ADC to physical units conversion using A.B. QL configuration file
++ modified A.B. QL configuration file to include lower and upper alarm levels for critical HK according to IPL user manual
++ error handling if a column is not found: cout column name and skip
+
+26 April 2007
+TAG CVS: V_1_1_0
+First tagged version after project splitting from old BUILD_MCALSW repository

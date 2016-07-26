@@ -1,0 +1,13 @@
+11 July 2014
+TAG CVS: V_1_0_2
++18/03/2009 modified template phlisttemplate: added extension EVENTS for including all energy/position info
++31/10/2008 added energy channel file canali_KW_bin1.dat (Konus-Wind energy channels)
+
+21 August 2008
+TAG CVS: V_1_0_1
++20/08/2008 added class phlistFile():fitsFile() to make a fits photon list
+            added also template file phlisttemplate.txt in dir mcalfits_conf/
+
+29 February 2008
+TAG CVS: V_1_0_0
+Library for PHA spectra generation by M. Galli

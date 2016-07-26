@@ -1,0 +1,5 @@
+Project: viewrun
+Program for visualization of basic histograms.
+
+Usage: viewrun <H_file>
+where <H_file> is the histogram file stored in $MCALSW/bin/mcalsw_output/H

@@ -1,0 +1,44 @@
+21 August 2008
+TAG CVS: V_1_2_3
++ 27/03/08 modified all code: substituted TDatime with TTimeStamp to account for legal/solar time (see root macro time_test.C)
+
+29 February 2008
+TAG CVS: V_1_2_2 
++ 28/02/08 modified hktrigger.cpp to cope with the new BOOST.dat file (BOOST and ECLIPSE info)
++ 11/02/08 modified headers to compile with root 5.18 on SuSE 10.3 (laptop)
+
+06 February 2008
+TAG CVS: V_1_2_1 
++20/12/07 hkTrgStatistics: corrected bug: check on bOOST file existence to avoid hang up 
+
+19 November 2007
+TAG CVS: V_1_2_0 
++ 15/11/07 added routine hkTrgStatistics: make statistics on burst triggers
++ 14/11/07 changed sw structure: introduced hkviewer.h and hktrigger.cpp (burst trigger statistics and output)
+
+31 July 2007
+TAG CVS: V_1_1_5 
++ 30/7/07 Y-axis in log scale for MCAL Burst triggers
+	  all time info expressed in UTC time
+
+08 June 2007
+TAG CVS: V_1_1_4 
++ 07/5/07 plot a canvas with partial and rejected MCAL Burst triggers
++ 30/5/07 modified for command line options parsing
++ 30/5/07 batch mode can be chosen by command line option -b and NOT by configuration file
+
+19 May 2007
+TAG CVS: V_1_1_3 
+TAG CVS: V_1_1_2 (wrong Makefile)
++ added capability to run in batch mode and save pictures
++ added dedicated configuration file
+
+28 April 2007
+TAG CVS: V_1_1_1
++ use physical units according to A.B. QL configuration file, if required
++ number of rows and columns per canvas read from  configuration file HKMONITOR_CONF
+
+27 April 2007
+TAG CVS: V_1_1_0
+First tagged version after project splitting from old BUILD_MCALSW repository
+

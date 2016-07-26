@@ -1,0 +1,5 @@
+project: mcalimaging
+
+author: Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: program for MCAL imaging capabilities and GRID data correlation

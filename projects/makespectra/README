@@ -1,0 +1,29 @@
+08/11/12
+added option to set the grb integration duration, ignoring the duration settings in the input file.
+Motivations: to integrate TGF cumulative spectra over a larget time interval.
+Removes from bkg calucation any grb time interval superposition.
+
+27/11/09
+modified input file format, see ChangeLog for details
+
+03/12/08 created project makespectra
+aim: make VSB/TGF cumulative spectra suitable for analysis with xspec
+
+Reads a text file formatted with these columns:
+	int runid;
+	int trg;
+	float counts;
+	float cpeak;
+	int subms;
+	float hr;
+	float lon;
+	float lat;
+	float dt;
+	double t0;
+	float t90;
+	float dt0;	// time difference of the found trigger with respect to the initial t0 (bstart)
+	float tgrbini;
+
+The first row contains only the number of following rows (int) to be processed.
+For each subsequent row, it opens the archival 3908 rootfile and cumulates spectra.
+In the end the source and background pha files compliant with xspec specifications are saved.

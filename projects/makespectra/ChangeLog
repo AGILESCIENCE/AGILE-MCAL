@@ -1,0 +1,18 @@
+11 July 2014
+TAG CVS V_1_0_0
++20/12/12 if grb interval is included in bkg interval, bkg is integrate in [bkgini, -0.1] U [+0.1, bkgfin] (removed the 200ms centered at the TGF t0)
++08/11/12 added option -grb to specify grb integration time (if set, ignore duration reported in file)
++30/08/10 added option -bkg to integrate background on custom intervals
++27/11/09 modified input file format:
+	first line: number of lines to be read
+	following lines:	int runid;
+				double t0;	// integration start time
+				float t90;	// duration
+
++18/11/09 modified archive path ***THIS SHOULD BE ACCOUNTED FOR IN A BETTER WAY***
++24/04/09 added option -sp: format an ascii spectrum in pha form
++16/04/09 print maximum energy per trigger
++05/02/09 added command line option for bars selection
++29/01/09 modified columns read from the input file; T90 must now be expressed in seconds
++03/12/08 created project makespectra
+

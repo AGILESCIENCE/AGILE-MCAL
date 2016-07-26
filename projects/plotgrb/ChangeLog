@@ -1,0 +1,37 @@
+11 July 2014
+TAG CVS: V_1_1_2
++27/05/10 can work also on 3902 data (required for Frascati data spectral analysis)
++31/03/09 introduced routine CustomAnalysisVSB(), no bkg used for VSB even if grb boundaries are forced
++04/03/09 commented out FindTrueT0() call if -subms option is selected; -ts option must be used
++22/11/08 included option -ts to set the peak search time window with respect to t0
++21/11/08 modified drawing of diagnostic plots
++29/09/08 added option -subms to manage dedicated analysis on VSB
++22/08/08 manage Very Short Burst case (works with MCVLib 1.1.14 or higher)
+
+21 August 2008
+TAG CVS: V_1_1_1
++21/08/08 if option -save is set, save also GCN time-only notice file
++05/05/08 modified command line options: introduced -grb -bkg -an -noan keywords, modified -diag -sp keywords
++28/04/08 modified option -ipn: save with default file name on <outpath>
+
+29 February 2008
+TAG CVS: V_1_1_0
++20/02/08 linked to lib mcalfits to save pha files in XSPEC compliant format
+          added several command line options for spectral analysis
+
+07 February 2008
+TAG CVS: V_1_0_2
++07/02/08 minor changes in main, require -save option to save lightcurves and analysis info
+
+06 February 2008
+TAG CVS: V_1_0_1
++17/01/08 class GRB has been moved to library project MCVLib, now use class GRB3908
++14/01/08 modified GRB::StandardDiagnostic() to draw energy dependent position distributions (use TH3 and projections)
++02/01/08 modified tstart and tstop calculation to account for eventual not monotonic behaviour
++18/12/07 added option -o for output path selection
++07/12/07 added GRB::StandardDiagnostic() for Poisson verification on background and othe diagnostics
++07/12/07 only one input tree connection at class constructor level
+
+06 December 2007
+TAG CVS: V_1_0_0
++23/11/07 created project plotgrb

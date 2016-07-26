@@ -1,0 +1,5 @@
+project: mcalgrid
+
+author: Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: perform analysis on GRID data

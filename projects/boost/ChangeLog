@@ -1,0 +1,8 @@
+21 August 2008
+TAG CVS: V_1_0_5
+
+18 December 2007
+TAG CVS: V_1_0_2
+
++ first tagged version
++ 18/12/2007 M.M. : introduced command line parameters for input and output path in read_cot.pro and write_boost_info.pro

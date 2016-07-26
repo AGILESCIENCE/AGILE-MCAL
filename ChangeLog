@@ -1,0 +1,106 @@
+11 June 2014
+TAG CVS: BUILD14
++ modified MCVLib  (V_1_1_14)
++ modified mcalanalyzer (V_1_1_7)
++ modified mcalfits (V_1_0_2)
++ modified plotmcaldata (V_1_1_5)
++ modified plotgrb (V_1_1_2)
++ modified project root2fits (V_1_1_0)
++ included project mcalcor2fits (V_1_0_1) 
++ included project makespectra (V_1_0_0)
++ included project process3908 (V_1_0_0)
++ included project scirm_analysis (V_1_0_0)
+
+21 August 2008
+TAG CVS: BUILD13
++ modified MCVLib  (V_1_1_13)
++ modified boost (V_1_0_5)
++ modified hkmonitor (V_1_1_6)
++ modified hkviewer (V_1_2_3)
++ modified mcalanalyzer (V_1_1_6)
++ modified mcalfits (V_1_0_1)
++ modified mcalgrid (V_1_2_0)
++ modified mergedataset (V_1_0_3)
++ modified plotgrb (V_1_1_1)
++ modified plotmcaldata (V_1_1_4)
++ included project root2fits (V_1_0_0): converts a root data tree into a fits file.
+
+TAG CVS: BUILD12  ?
+
+29 February 2008
+TAG CVS: BUILD11
++ modified MCVLib  (V_1_1_12)
++ modified mcalanalyzer (V_1_1_5)
++ modified plotgrb (V_1_1_0)
++ modified mcalselect (V_1_1_2)
++ modified boost (V_1_0_4)
++ included project mcalfits (V_1_0_0): by M. Galli, adapted by MM): library for fits file handling for XSPEC
++ included project mergedataset (V_1_0_0): old 2007 project to merge RT and H files. needed for calibration activity
+
+07 February 2008
+TAG CVS: BUILD10
++ modified MCVLib (V_1_1_11)
++ modified mcalanalyzer (V_1_1_4)
++ modified hkviewer (V_1_2_1)
++ modified viewbsr_ric (V_1_1_1)
++ modified plotmcaldata (V_1_1_3)
++ modified plotgrb (V_1_0_2)
++ included project boost (by F. Fuschino) for boost data generation (V_1_0_3)
+
+06 December 2007
+TAG CVS: BUILD9
++ modified MCVLib (V_1_1_9)
++ modified mcalanalizer (V_1_1_3)
++ included project plotgrb (V_1_0_0)
+
+19 November 2007
+TAG CVS: BUILD8
++ modified MCVLib (V_1_1_8)
++ modified mcalgrid (V_1_1_2)
++ modified plotmcaldata (V_1_1_2)
++ modified hkviewer (V_1_2_0)
+
+31 August 2007
+TAG CVS: BUILD7
++ modified MCVLib (V_1_1_7)
++ modified plotmcaldata (V_1_1_0)
+
+31 July 2007
+TAG CVS: BUILD6
++ modified MCVLib (V_1_1_6)
++ modified mcalgrid (V_1_1_1)
++ modified hkmonitor (V_1_1_5)
++ modified plotmcaldata (V_1_0_2)
++ modified hkviewer (V_1_1_5)
+
+08 June 2007
+TAG CVS: BUILD5
++ modified MCVLib (V_1_1_5)
++ modified hkmonitor (V_1_1_4)
++ modified hkviewer (V_1_1_4)
++ modified plotmcaldata (V_1_0_1)
+
+19 May 2007
+TAG CVS: BUILD4
++ modified MCVLib (V_1_1_4)
++ modified hkmonitor (V_1_1_3)
++ introduced project plotmcaldata (V_1_0_0)
+
+2 May 2007
+TAG CVS: BUILD3
+All projects are suitable for MCAL flight/commissioning data.
++ modified MCVLib (V_1_1_3)
++ modified hkmonitor (V_1_1_2)
+
+
+28 April 2007
+TAG CVS: BUILD2
+All projects are suitable for MCAL AIV data analysis.
++ modified hkmonitor 
++ modified hkviewer
+
+27 April 2007
+TAG CVS: BUILD1
+First tagged version after project splitting from old BUILD_MCALSW repository.
+All projects are suitable for MCAL AIV data analysis.
+

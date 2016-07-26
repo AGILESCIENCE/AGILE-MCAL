@@ -1,0 +1,105 @@
+# Last revision : 22-nov-2005
+#
+#  Simple Makefile, for a library for a class MCV (MCAL-View)
+#
+#  by   M.Marisaldi 2005
+# thanks to M.Galli
+#
+# ------------------------------------------
+#
+#  defining options and general symbols :
+
+#                        directory of  the agile simulation system 
+#  now from the environment 
+MAINDIR = /home/martino/C_projects/workdir/MCALSW
+
+#   where include files and libs are placed 
+
+LIBDIR = $(MAINDIR)/lib 
+#INCDIR = $(MAINDIR)/include
+INCDIR = $(LHEASOFT)/include
+
+#  the header files 
+
+HFILE = hitlist.h nrclass.h 
+CFILE = hitlist.cpp nrclass.cpp 
+OFILE = $(CFILE:cpp=o) 
+
+# the first target is the default (here def is dthe default )
+
+def : all ; @echo " =======>    OK: header copied, object files and library done... " 
+
+
+
+SHELL = /bin/sh
+#GC = g++-3.0 
+#INCLUDEDIR= 
+GC = g++ 
+GFLAGS =  -I$(INCDIR)
+DEBUG = -g -O0              
+NODEBUG = -O3
+
+#
+#                    ------- Used compiler flags: --------
+#
+# -g -O0 : per il debug (No optimization when debugging)
+#
+#
+  
+
+LDFLAGS = 
+LIBS = 
+
+
+
+#     -----------------------------------------------------
+#     --------          dependency rules         ----------
+#     -----------------------------------------------------
+
+#  I dont' use implicit rules ( setting a void SUFFIXES list )
+
+.SUFFIXES : 
+
+#  ----------------------
+.PHONY : all                        # dico che all non e' un file
+all :  headers libMCV.a 
+install : all ; 
+
+#     ar : r=replace c=crea v=verboso s=fa symbols, o si fanno con ranlib 
+
+libhitlist.a :  $(OFILE)
+	ar rv $@ $(OFILE) ; ranlib $@ ; cp $@ $(LIBDIR) 
+	
+%.o: %.cpp
+	$(GC)  $(GFLAGS)  $(DEBUG) -o $@ -c $<
+
+%.cpp: %.h 
+	touch $<
+
+#parametro.o :  parametro.cpp    
+#	$(GC) $(GFLAGS)  $(DEBUG) -c -o  $@  $^ 
+
+#parametri.o :  parametri.cpp    
+#	$(GC) $(GFLAGS)  $(DEBUG) -c -o  $@  $^ 
+
+#parametri.cpp : parametri.h   
+#	touch $@  
+
+#parametro.cpp : parametro.h   
+#	touch $@  
+
+#  copio gli headers nel loro dirs 
+
+.PHONY : headers
+headers : $(HFILE) ; cp $(HFILE) $(INCDIR)
+
+#  this target resets dependencies and force make to re-make all
+
+.PHONY : reset
+reset : ; touch  $(HFILE) $(CFILE) 
+
+#  this target deletes object files 
+
+.PHONY : clear
+clear : ; rm *.o   
+

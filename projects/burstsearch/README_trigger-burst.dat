@@ -1,0 +1,11 @@
+README_trigger-burst.dat
+
+For burst.dat the data are stored with following format
+format='(I7,I7,I7, f25.8,I7,f25.8,I7,f25.1,I7,f25.1)'
+and the title of columns are:
+Contact,Channel,Burst_ID,START,Start_index,STOP,Stop_index,Duration,n_bins,Significance
+
+For trigger.dat the data are stored with following format
+format='(I5,I5,F25.10,I10,I10,I10,f25.1,f25.1)'
+and the title of columns are:
+Contact,Index, Time (TT), Channel (range 1-8), bin Value, BKG value, threshold, Significance

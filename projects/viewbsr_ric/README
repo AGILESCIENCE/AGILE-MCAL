@@ -1,0 +1,5 @@
+project: viewbsr_ric
+
+author: Marcello Galli (galli@bologna.enea.it) and Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: 	plots reconstructed BSR graphics produced with program convPKP3908toRoot

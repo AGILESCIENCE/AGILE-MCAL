@@ -1,0 +1,10 @@
+ref_boost
+row 1 => reference orbit
+row 2 => time (TT) of center of BOOST event
+row 3 => period (sec)
+
+ref_saa
+row 1 => reference orbit
+row 2 => start (TT) of saa in reference orbit
+row 3 => period mean (sec), sinusoidal trend 
+row 4 => semi-duration of saa for maximum crossing

@@ -1,0 +1,147 @@
++ 27/10/15 modified MCVFile3916.h and .cpp. Included method Eci2lla() to convert from ECI data to ECEF and then to lon,lat. To be used for data after Jul 2015
++ 22/10/15 modified MCVFile3916.h: gpsevt.posvali put to the end of the struct otherwise macro add_geographic_info_4.C does not work. CINT bug?
++ 10/09/15 modified MCVFile3916(): write to fila also GPS X,Y,Z and posvali; redefine time interval according to time of first and last event. Needed for comparison with position produced with TLE propagation (after PPS failure on Jul. 1 2015)
+
+11 July 2014
+TAG CVS: V_1_1_14
+
++ 14/07/12 deleted previous change otherwise standard tools on 3908 flight data does not work. SHOULD BE FIXED BETTER!
++ 29/05/12 modified MCVFilePKP()::Process3909() put time in seconds (rather than microsec), needed for calibration measure analysis with standard flight SW tools
++ 05/04/12 added inline public member MCVBurstOffset::GetPeakCenter() (needed for macro offset_correction.C)
++ 28/03/12 modified MCVHisto()::FillHisto() made public, not protected.
+           added inline public member MCVHisto()::GetRawHisto()
++ 23/03/12 modified MCVBurstOffset::Calculate() in order to work on 3908 data, too. 
++ 02/03/12 modified MCVFile3201 to include one more branch needed by FF for exposure calculation
++ 03/06/10 modified MCVFile::Initialize() set pdhuformat=kTRUE also if INSTRUME==GRID. needed to work on DAFNE simulations by Pavia INFN team
++ 02/12/09 added method MCVFile::SetRootFileName() initialize the path name for the output root file
++ 02/11/09 added class MCVFile3916 to handle GPS files and work with latitude/longitude and Earth angles
++ 29/04/09 modified GRB3908::VSBDiagnostic() dump the time serie to stdout after request from M. Fullekrug
++ 28/04/09 modified GRB3908::SaveIPN() calculate the background using tbkgini and tbkgfin parameters, like in GRB::CalculateBackground()
++ 16/04/09 modified GRB3908::VSBDiagnostic() in order to print the maximum event's energy in GRB interval
+           added inline function double GRB::GetMaxE(), returns the maximum event's energy in GRB interval
++ 14/04/09 added inline function TGraph GRB3908::GetEvsT(), returns the E vs (T-T0) graph (gEt)
++ 08/04/09 modified MCVFile::Initialize() less rigid checks on keyword TSTART and TSTOP; needed to process Frascati calibration data
++ 31/03/09 added GRB3908::CustomSpectralAnalysisVSB() No bkg is considered for custom analysis on VSB. Needed for proper TGFs fluence estimation
++ 19/03/09 modified MCVFile::CalculateEandPos() added minus sign in position to conform to standard ref system (verified with GRB 080721)
++ 17/03/09 modified GRB3908::CalculatePeakFluxVSB() the peak is now calculated in interval t0 +/- tsearch like in GRB::CalculatePeakFlux()
++ 04/03/09 modified GRB::CustomSpectralAnalysis() in recalculation of tgrbini and tgrbfin to match time bin (correct time mismatch in VSB analysis)
++ 04/12/08 added GRB::SetT0() to set t0 without creating light curves (useful fot project makespectra)
++ 01/12/08 modified GRB3908::SaveVSBInfo(): prints also background counts
+           modified CustomSpectralAnalysis()
++ 21/11/08 added GRB3908::DrawPositionDiagnostic(): decuples diagnostic pos histo generation and drawing
+           added GRB3908::DrawVSBDiagnostic(): decuples diagnostic bars/energy graph generation and drawing
+	   diagnostic plots are drawn in a single canvas with the light curve; the canvas can be saved
++ 17/11/08 modified GRB::CalculateT90(): it is calculated in order to always include the peak (necessary for VSB analysis)
+	   modified GRB::CalculatePeakFlux(): peak flux is calculated in a time interval around t0 (necessary for VSB analysis)
+	   corrected bug for hungup in batch mode if data do not include t0; eliminated divisions by zero
++ 15/10/08 modified GRB3908::SaveVSBInfo() to save also tbin, cbkg. Needed for dinamic time binning for 16ms triggers
+           (see ruby script vsb_process_list_16ms_only.rb)
++ 30/09/08 modified GRB::CalculateT90(): tgrbini and tgrbfin are updated according to t90 calculation
++ 29/09/08 modified GRB3908::SaveVSBInfo() to save dt0. VSB external analysis macro MUST be updated accordingly
+           corrected minor bug in GRB3908::CalculateT90VSB()
+	   modified GRB3908::VSBDiagnostic(): events position distribution ("cuboni")
++ 26/09/08 added GRB3908::FindTrueT0() to reproduce the sub-ms trigger logic (moving time window chained to each event)
++ 27/08/08 added GRB3908::VSBDiagnostic() to create bars-vs-t and E-vs-t for VSB. Can save the image with SaveVSBDiagnostic()
++ 22/08/08 added GRB3908::*VSB() to process (peak flux, duration, fluence) Very Short Bursts.
+
+21 August 2008
+TAG CVS: V_1_1_13
++ 21/08/08 added GRB3908::SaveIPNMsg() to save message for IPN time-only GCN (after Scott Barthelmy's proposal)
++ 10/06/08 added GRB3908::SaveDiagnostic() to save position distribution image. Don't know why cannot save gif image!
++ 26/05/08 added routine for hardness ratio calculations (TO BE COMPLETED)
++ 05/05/08 modified GRB3908::CustomLightCurve() : SpectralAnalysis() can be selected independently
+           GRB and GRB3913XZ : added possibility to make custom spectral analysis in selected time interval
++ 14/04/08 modified GRB3908::DrawCustomLightCurve() center image according to peak flux, mandatory for TGF
++ 10/04/08 modified GRB::SaveIPN() to solve the problem of legal/solar time; time 0 now is t0
++ 10/04/08 modified GRB.h and GRB3913XZ.h: added methodGetLightCurve() and GetLightCurve2D() 
++ 26/03/08 modified GRB::GRB(), GRB3908::CustomLightCurve() and GRB3913::LightCurve() to solve the problem of legal/solar time,
+           according to results of root macro time_test.C
++ 10/03/08 modified GRB::CalculateBackground() corrected minor bug
+	   modified MCVTree::MCVTree() corrected a bug for dataset merging
+
+29 February 2008
+TAG CVS: V_1_1_12
++ 28/02/08 MCVTree::DoSelection() modified to do proper time selection with respect to first event
++ 11/02/08 modified headers to compile with root 5.18 on SuSE 10.3 (laptop)
+
+07 February 2008
+TAG CVS: V_1_1_11
++ 07/02/08 modified GRB::GetFileHeader() to include the contact number in the default file name 
+
+06 February 2008
+TAG CVS: V_1_1_10
++ 29/01/08 added class GRB3913XZ for GRB analysis of scientific ratemeters on both planes
+           modified MCVSciRM::UpdateGlobalFile() to include file info in the root file (necessary for GRB processing)
++ 17/01/08 added class GRB for GRB analysis, class GRB3908 and class GRB3913 both derived by GRB
++ 04/01/08 modified MCVbsrMonitor_ric::PrintRMTable(): save RM table good for background analysis on BOOST pre-burst
+
+06 December 2007
+TAG CVS: V_1_1_9
++ 30/11/07 modified MCVFilePKP:Process3909Data() and Process3902Data():
+           the time value stored in the events ROOT file is the corrected TT time
++ 22/11/07 modified MCVFilePKP3908:Process3908Data() column TIME is in seconds: can work properly on .cor files only
+
+19 November 2007
+TAG CVS: V_1_1_8
++ 15/11/07 modified MCVFilePKP:Process3909Data() column TIME is in seconds: can work properly on .cor files only
+
+31 August 2007
+TAG CVS: V_1_1_7
++ 28/08/07 modified MCVFilePKP:Process3902Data() column TIME is in seconds: can work properly on .cor files only
++ 28/08/07 modified MCVHisto::FillHisto() evt.time IS in seconds: can work properly on .cor files only
++ 28/08/07 modified MCVTree::DoSelection() evt.time IS in seconds: can work properly on .cor files only
+
+31 July 2007
+TAG CVS: V_1_1_6
++ 19/07/07 modified MCVFilePKP:Add3913SciRatemeters use correct 1.024 s time pitch between consecutive windows
++ 19/07/07 modified MCVFilePKP:Add3913SciRatemeters search for TIME column: can work properly on .cor files only
++ 09/07/07 modified MCVSciRM: make comparison between Sci.RM and energy reconstruction algorithms
+
+08 June 2007
+TAG CVS: V_1_1_5
++ 02/6/07 modified MCVFilePKP::Add3913SciRatemeters() and MCVSciRM::UpdateGlobalFile() to work with UTC time
++ 31/5/07 modified MCVHisto and MCVFilePKP::Add3913SciRatemeters() to include also AC sci. RM. (for dead-time and flare detection)
++ modified MCVTree::DoSelection() corrected for proper assignment of number of entries
++ modified MCVFile::Initialize() recover pkttype information from PKTTYPE and PKTSTYPE keywords and NOT
+  from CREAT_ID (otherwise cannot process .cor files)
++ modified MCVTree::DoSelection() corrected bug in time info calculations 
++ modified MCVFilePKP::Process3909() and Process3902(): modified tini and tend as time of the first and last event
+
+19 May 2007
+TAG CVS: V_1_1_4
++ modified MCVFile::Initialize() retrieve time information from keywords TSART and TSTOP
++ MCVFileInfo modified.
+
+
+From now on this version is good only for flight data analysis
+
+
+1 May 2007
+TAG CVS: V_1_1_3
+Last tagged version for AIV data. Next versions will be tailored for Flight data.
+
++ MCVRawMonitor::FillGlobal() modified to rescale TGraph properly (problem introduced with root 5.14 and NOT understood!)
++ MCVFile::Initialize() modified to include analysis of stand-alone 39.13 (Sci. RM.) files
+
+Link with root 5.14/00e
+
+27 April 2007
+TAG CVS: V_1_1_2
++ MCVTree::DoSelection() modified to select on energy on every single bar (necessary to work with zero-threshold
+  simulation data)
++ added class MCVBkgSubtraction to do background subtraction, source peak fit on all bars and on the global spectrum, 
+  comparison with simulated data (aspecially for simulation validation on calibration data @CGS, Sept. 2006)
++ added class MCVBurstLandauFit to fit muons Landau spectra on all bars and on the global spectrum
++ MCVBkgSubtraction modified to fit also the globas spectrum
++ modified MCVGridEnergyCal::Calculate() energy spectra must be rescaled with effective time otherwise aoutomatic fit does not work! (TO BE UNDERSTOOD)
+
+28 March 2007
+TAG CVS: V_1_1_1
++ MCVCalibration modified to account for GLAST-like position reconstruction
++ MCVFile::CalculateEandPos() modified to account for polinomial functions driven energy and position reconstruction
++ added class MCVBkgSubtraction for background subtraction and consequent analysis
+
+16 March 2007
+TAG CVS: V_1_1_0
+First tagged version after project splitting from old BUILD_MCALSW repository
+

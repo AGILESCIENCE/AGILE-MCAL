@@ -1,0 +1,6 @@
+project: convPKP3908toRoot
+
+author: Marcello Galli (galli@bologna.enea.it) and Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: 	converts 39.08 lv1 file into ROOT MCVlib format.
+		performs additional ratemeters calculations (BSR) not performed with program mcalanalyzer

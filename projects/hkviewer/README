@@ -1,0 +1,5 @@
+project: hkviewer
+
+author: Martino Marisaldi (marisaldi@iasfbo.inaf.it)
+
+description: views graphics produced with program hkmonitor

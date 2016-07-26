@@ -1,0 +1,26 @@
+{
+	TString outname("/data1/AGILE_MCAL_AIV_Data/CGS_Tortona/hk_CGS.root");
+	TString gname("M6573_0_MCAL_Fixed_Rt_BoardX");
+
+	mcalstyle = new TStyle("mcalstyle","mcalview default style ");
+	mcalstyle->SetCanvasBorderMode(0);
+	mcalstyle->SetPadBorderMode(0);
+	mcalstyle->SetPadColor(0);
+	mcalstyle->SetCanvasColor(0);
+	mcalstyle->SetTitleColor(1); // 0
+	mcalstyle->SetStatColor(0);
+	mcalstyle->SetPalette(1,0);
+	mcalstyle->SetFrameBorderMode(0);
+	mcalstyle->SetLabelSize(0.04, "xyz");
+	mcalstyle->SetTitleSize(0.04, "xyz");
+	TDatime da(2006, 1, 1, 0, 0, 0);
+	mcalstyle->SetTimeOffset(da.Convert());
+	gROOT->SetStyle("mcalstyle");
+	gROOT->ForceStyle();
+
+	TFile *fh = new TFile(outname.Data(), "READ");		
+	c1 = new TCanvas("c1", "HK monitor", 800, 600);
+	TGraph	*aux = NULL;
+	fh->GetObject(gname.Data(), aux);
+	aux->Draw("AP");
+}
