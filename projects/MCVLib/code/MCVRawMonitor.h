@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 #include <math.h>
-#include <iostream.h>
+#include <iostream>
 
 #include <TROOT.h>
 #include <TApplication.h>

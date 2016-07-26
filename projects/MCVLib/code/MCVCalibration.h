@@ -11,7 +11,7 @@
 //
 #include <stdlib.h>
 #include <math.h>
-#include <iostream.h>
+#include <iostream>
 #include <TH1.h>
 #include <TH2.h>
 #include <TRandom.h>

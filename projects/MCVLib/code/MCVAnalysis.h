@@ -56,7 +56,7 @@ frequency with total power equal to the variance);  thanks to Joe Mietus.
 #ifndef MCVLib_MCVAnalysis
 #define MCVLib_MCVAnalysis
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>

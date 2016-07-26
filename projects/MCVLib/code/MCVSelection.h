@@ -12,7 +12,7 @@
 #ifndef MCVLib_MCVSelection
 #define MCVLib_MCVSelection
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <TROOT.h>

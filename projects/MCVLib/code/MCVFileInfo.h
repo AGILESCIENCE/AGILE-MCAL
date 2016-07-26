@@ -12,12 +12,13 @@
 #ifndef MCVLib_MCVFileInfo
 #define MCVLib_MCVFileInfo
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <TROOT.h>
 #include <TNamed.h>
 #include <TString.h>
+using namespace std;
 
 //! A class for collecting basic information on run 
 

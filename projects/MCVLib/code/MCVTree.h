@@ -26,6 +26,7 @@
 #define NMAX_FILE 100
 #define DELTAT 1000.
 #define ZSTH 12.
+using namespace std;
 
 //! Class for selection and operations at ROOT Tree level
 

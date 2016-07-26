@@ -82,6 +82,7 @@
 
 //! A standard viewer for basic bsr analysis histograms 
 //! from MCVRawMonitor by Martino, but to see burst ratemeters 
+using namespace std;
 
 class MCVbsrMonitor : public TGTransientFrame {
 

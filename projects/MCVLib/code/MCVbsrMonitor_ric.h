@@ -73,6 +73,7 @@
 #include "MCVFileInfo.h"
 #include "MCVBurst.h"
 #include "MCVFile.h"
+using namespace std;
 
 //#define NSIGMA 10
 

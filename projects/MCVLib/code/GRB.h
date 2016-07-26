@@ -13,9 +13,9 @@
 #ifndef MCVLib_GRB
 #define MCVLib_GRB
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include <TROOT.h>
 #include <TString.h>
 #include <TObjArray.h>
@@ -36,7 +36,7 @@
 #include <TProfile2D.h>
 #include <TGraph.h>
 #include <TGraphErrors.h>
-
+using namespace std;
 
 #ifndef TRUE
 #define TRUE 1
