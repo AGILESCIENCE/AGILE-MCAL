@@ -98,10 +98,10 @@ class MCVAnalysis {
 		long	nentries;
 		float ofac;
 		float hifac;
-		float *wk1;
-		float *wk2;
-		float *time;
-		float *y;
+		float *wk1;	//!
+		float *wk2; 	//!
+		float *time; 	//!
+		float *y; 	//!
 		unsigned long nout;
 		unsigned long jmax;
 		float prob;

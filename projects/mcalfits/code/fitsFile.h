@@ -19,9 +19,10 @@
 #include <iostream>   
 #include <iomanip>
 #include <fstream>  
-
-#include <string>
+#include <typeinfo>
+#include <string.h>
 #include <vector>
+#include <stdio.h>
 
 //#include "cfitsio.h" 
 //#include "fitsio2.h" 

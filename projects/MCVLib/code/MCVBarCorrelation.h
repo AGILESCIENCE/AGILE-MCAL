@@ -28,10 +28,10 @@ class MCVBarCorrelation : public MCVStdAnalysis {
 	protected:
 		int 	maxiter;
 		double	maxsigma;
-		double 	*avgbc;
-		double 	*avgbclow;
-		double 	*stdbc;
-		double 	*stdbclow;
+		double 	*avgbc;		//!
+		double 	*avgbclow;	//!
+		double 	*stdbc;		//!
+		double 	*stdbclow;	//!
 		void Loop(TH2F *hbc, double *, double *);
 	public:
 		MCVBarCorrelation();

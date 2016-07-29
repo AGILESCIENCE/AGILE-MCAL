@@ -91,18 +91,18 @@ class GRB {
 		
 		// spectral analysis
 		int			nEbins;		// number of energy bins
-		double			*mcalEbin;	// boundaries of the energy bins
-		float 			*pha;	
+		double			*mcalEbin;	//! boundaries of the energy bins
+		float 			*pha;		//!
 		
 		// energy selected histogram
-		double			*bkg;		// background per bin
-		double			*ebkg;		// statistical error on background per bin
-		double			*fpeak;		// peak flux
-		double			*efpeak;	// error on peak flux
-		double			*tpeak;
-		double			*fluence;	// fluence in t90 time interval (counts)
-		double			*efluence;	// error on fluence in t90 time interval (counts)
-		int			*binpeak;
+		double			*bkg;		//! background per bin
+		double			*ebkg;		//! statistical error on background per bin
+		double			*fpeak;		//! peak flux
+		double			*efpeak;	//! error on peak flux
+		double			*tpeak;		//!
+		double			*fluence;	//! fluence in t90 time interval (counts)
+		double			*efluence;	//! error on fluence in t90 time interval (counts)
+		int			*binpeak;	//!
 
 		// HR calculations
 		double 			bkgLE;

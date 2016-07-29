@@ -5,6 +5,7 @@
 
 #define HKVIEWER_CONF "/share/mcal_conf/hkviewer_configuration.conf"
 #define HKREFERENCE_CONF "/share/hkmonitor_conf/32_01.ql_file2.PPS"
+using namespace std;
 
 int main(int argc, char *argv[])
 {

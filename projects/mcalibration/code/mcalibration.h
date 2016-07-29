@@ -31,7 +31,7 @@
 #include <TLegend.h>
 #include <TGraph.h>
 
-#include <iostream.h>
+#include <iostream>
 #include <fitsio.h>
 #include <stdlib.h>
 #include <math.h>

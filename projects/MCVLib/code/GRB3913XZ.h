@@ -22,10 +22,10 @@ class GRB3913XZ  {
 	protected:
 		TCanvas		*cpXZ;
 		
-		double *time;
-		double *data;
-		double *dataAC;
-		double *dataEbin;
+		double *time;		//!
+		double *data;		//!
+		double *dataAC;		//!
+		double *dataEbin;	//!
 		double t90X;
 		double t90Z;
 		int ns;

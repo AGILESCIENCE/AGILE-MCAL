@@ -33,9 +33,10 @@
 #include <fstream>     
 #include <iomanip>	 	
 #include <sstream> 
-
+#include <stdlib.h>
 #include <vector>
-
+#include <typeinfo>
+#include <string.h>
 #include "useful.h"
 
 class  EChannels

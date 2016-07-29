@@ -18,10 +18,10 @@
 class GRB3913  : public GRB {
 	
 	protected:
-		double *time;
-		double *data;
-		double *dataAC;
-		double *dataEbin;
+		double *time;		//!
+		double *data;		//!
+		double *dataAC;		//!
+		double *dataEbin;	//!
 		int ns;
 		int plane;	// 0 = plane X, 1 = plane Z
 

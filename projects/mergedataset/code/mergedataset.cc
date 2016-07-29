@@ -15,7 +15,7 @@
 #include <TString.h>
 #include <TTree.h>
 
-#include <iostream.h>
+#include <iostream>
 #include <fitsio.h>
 #include <stdlib.h>
 #include <math.h>

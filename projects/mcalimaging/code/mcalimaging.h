@@ -32,7 +32,7 @@
 #include <TLegend.h>
 #include <TLine.h>
 
-#include <iostream.h>
+#include <iostream>
 //#include <fitsio.h>
 #include <stdlib.h>
 #include <math.h>

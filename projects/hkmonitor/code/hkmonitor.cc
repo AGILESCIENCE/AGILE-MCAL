@@ -1,6 +1,6 @@
 #include <fitsio.h>
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <math.h>
 
@@ -17,6 +17,7 @@
 
 #define HKMONITOR_CONF "/share/hkmonitor_conf/hkmonitor_configuration.conf"
 #define HKREFERENCE_CONF "/share/hkmonitor_conf/32_01.ql_file2.PPS"
+using namespace std;
 
 void printerror(int);
 

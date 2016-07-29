@@ -61,7 +61,7 @@ class MCVFile3201 {
 		int 	nfields;
 		char 	comment[100];
 		int	contact;
-		char *posvali;
+		char *posvali;	//!
 		char	isRoot;	// 1 if it's a valid root file
 		char	isFits;	// 1 if it's a valid fits file
 		
@@ -75,14 +75,14 @@ class MCVFile3201 {
 		TTree *tdata;
 		hkevt evt;
 
-		Double_t *time;
-		char *orphase;
-		char *plopmode;
-		char *digitbit;
-		char *rtmbit;
-		char *zstatus;
-		Int_t *zvalue;
-		Int_t *sentgnd;
+		Double_t *time;	//!
+		char *orphase;	//!
+		char *plopmode;	//!
+		char *digitbit;	//!
+		char *rtmbit;	//!
+		char *zstatus;	//!
+		Int_t *zvalue;	//!
+		Int_t *sentgnd;	//!
 
 				
 		TString   filename;	// input file

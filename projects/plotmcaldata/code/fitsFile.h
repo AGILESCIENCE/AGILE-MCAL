@@ -19,12 +19,14 @@
 #include <iostream>   
 #include <iomanip>
 #include <fstream>  
-
-#include <string>
+#include <typeinfo>
+#include <string.h>
 #include <vector>
+#include <stdio.h>
 
 //#include "cfitsio.h" 
-#include "fitsio2.h" 
+//#include "fitsio2.h" 
+#include "fitsio.h" 
 
 //#include "writecell.cpp"
 
@@ -135,7 +137,8 @@ template < typename TIPO >
 		char errtext[40] ; // fitsio error text : max per fitsio  30 char + '/0'
 		fits_get_errstatus( status_fits, errtext);  
 		std::cerr << " fitsio err message: " << errtext << std::endl  ;	              
-   } 
+   }
+   return 0;	// MM added 20 Aug. 2008 to avoid warning 
  } 
 
 #endif
@@ -164,6 +167,8 @@ class fitsFile
 	   void  setIntKey(std::string keyname, int value,std::string hduname) ;
 	   void  setFloatKey(std::string keyname, float value) ;
 	   void  setIntKey(std::string keyname, int value) ;
+	   void  setStringKey(std::string keyname, char *value,std::string hduname) ;
+	   void  setStringKey(std::string keyname, char *value) ;
 	   
 	   
     protected:

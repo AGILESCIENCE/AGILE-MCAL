@@ -12,7 +12,7 @@
 #ifndef MCVLib_MCVFileInfo
 #define MCVLib_MCVFileInfo
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include "TNamed.h"

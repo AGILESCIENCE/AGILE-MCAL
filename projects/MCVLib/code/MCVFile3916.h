@@ -61,13 +61,13 @@ class MCVFile3916 {
 		int 	nfields;
 		char 	comment[100];
 		int	contact;
-		Int_t *iX;
-		Int_t *iY;
-		Int_t *iZ;
-		Double_t *time;
-		Double_t *ephi;
-		Double_t *etheta;
-		char *posvali;
+		Int_t *iX;		//!
+		Int_t *iY;		//!
+		Int_t *iZ;		//!
+		Double_t *time;		//!
+		Double_t *ephi;		//!
+		Double_t *etheta;	//!
+		char *posvali;		//!
 		char	isRoot;	// 1 if it's a valid root file
 		char	isFits;	// 1 if it's a valid fits file
 		

@@ -11,6 +11,7 @@
 //
 #include "plotmcaldata.h"
 #include "version.h"
+using namespace std;
 
 TCanvas *standardOutput1(int ns, double *time, double *data, double *dataAC, int bin, TTimeStamp epoch, float xzmax)
 {

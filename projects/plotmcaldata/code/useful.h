@@ -10,7 +10,7 @@
 #include <iostream> 
 #include <iomanip> 
 #include <string>
-
+#include <stdlib.h> 
 
 namespace myuse
 {

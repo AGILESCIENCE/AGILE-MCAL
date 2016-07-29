@@ -32,10 +32,10 @@ The implemented routines are derived from those developed for program mcalview2.
 
 class MCVCountRate : public MCVStdAnalysis {
 	protected:
-		double	*crx;
-		double	*sigx;
-		double	*crz;
-		double	*sigz;
+		double	*crx;	//!
+		double	*sigx;	//!
+		double	*crz;	//!
+		double	*sigz;	//!
 		double	drmax;	
 		int 	refrun;
 		double	maxpoisdev;

@@ -1,10 +1,10 @@
 #ifndef PLOTMCALDATA
 #define PLOTMCALDATA
 
-#include <iostream.h>
+#include <iostream>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream.h>
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <math.h>
