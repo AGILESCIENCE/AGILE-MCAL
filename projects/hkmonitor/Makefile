@@ -74,7 +74,7 @@ ROOTLIBS     := $(shell root-config --libs)
 ROOTGLIBS    := $(shell root-config --glibs)
 ROOTDICT := 
 
-ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include  -D_REENTRANT  
+ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include -I$(ROOTSYS)/include/root -D_REENTRANT
 #-Woverloaded-virtual 
 #ROOTCONF += -DG__REGEXP -DG__UNIX -DG__SHAREDLIB -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO
 #ROOTCONFLIB=-L$(ROOTSYS)/lib -lCore -lCint -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lGui -lpthread -lm -ldl -rdynamic

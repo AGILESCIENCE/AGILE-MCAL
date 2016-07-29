@@ -74,7 +74,7 @@ ROOTLIBS     := $(shell root-config --libs)
 ROOTGLIBS    := $(shell root-config --glibs)
 ROOTDICT := mcalimagingDict
 
-ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include  -D_REENTRANT  
+ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include -I$(ROOTSYS)/include/root -D_REENTRANT
 #-Woverloaded-virtual 
 #ROOTCONF += -DG__REGEXP -DG__UNIX -DG__SHAREDLIB -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO
 #ROOTCONFLIB=-L$(ROOTSYS)/lib -lCore -lCint -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lGui -lpthread -lm -ldl -rdynamic
@@ -198,7 +198,7 @@ rootdict:
 	test -h $(INCLUDE_DIR)/MCVFile.h  ||  ln -s  $(MCALSW)/include/MCVFile.h  $(INCLUDE_DIR)/MCVFile.h
 	test -h $(INCLUDE_DIR)/MCVFileInfo.h  ||  ln -s  $(MCALSW)/include/MCVFileInfo.h  $(INCLUDE_DIR)/MCVFileInfo.h
 	
-	$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cpp -c -I$(INCLUDE_DIR) mcalguess.h $(SOURCE_DIR)/mcalimagingLinkDef.h
+	$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cpp -c -I$(INCLUDE_DIR) -I$(MCALSW)/include mcalguess.h $(SOURCE_DIR)/mcalimagingLinkDef.h
 	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -I$(SOURCE_DIR) -c $(SOURCE_DIR)/$(ROOTDICT).cpp -o $(OBJECTS_DIR)/$(ROOTDICT).o
 	
 

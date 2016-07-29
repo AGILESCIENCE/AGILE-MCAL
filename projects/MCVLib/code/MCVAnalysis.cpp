@@ -106,7 +106,7 @@ void MCVAnalysis::Fasper(float x[], float y[], unsigned long n, float ofac, floa
     expy = exp(-pmax);
     effm = 2.0*(*nout)/ofac;
     *prob = effm*expy;
-    if (*prob > 0.01) *prob = 1.0 - pow(1.0 - expy, effm);
+    if (*prob > 0.01) *prob = 1.0 - pow(1.0f - expy, effm);
 }
 
 //
