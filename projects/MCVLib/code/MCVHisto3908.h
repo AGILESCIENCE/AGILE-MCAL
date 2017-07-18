@@ -111,18 +111,18 @@ class MCVHisto3908
         // for hist and plot msec are used as time units (on L1 fits we have microsec)
 	
         static const int nummsec = 60000 ; //! num of msec for E-t histo ( 1 minutes ) 
-        static const double minsec  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
-        static const double maxsec  = 600000.0 ; //! step : 10 msec 
+        static const long minsec  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
+        static const long maxsec  = 600000.0 ; //! step : 10 msec 
      
 //        static const int nummsec_ric ; //unused, the time step == sit integration time 
-        static const double minsec_ric  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
-        static const double maxsec_ric  = 600000.0 ; //! step : 10 msec 
+        static const long minsec_ric  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
+        static const long maxsec_ric  = 600000.0 ; //! step : 10 msec 
 
 
         int numE ;                          //! num of E points 
-        static const double stepE = 0.500 ; //! bin step: UNITS: MEV 
-        static const double minE  = 0.0   ; //! E-t: E range: from 0 to 100 Mev 
-        static const double maxE  = 100.0 ; //! 
+        static const long stepE = 0.500 ; //! bin step: UNITS: MEV 
+        static const long  minE  = 0.0   ; //! E-t: E range: from 0 to 100 Mev 
+        static const long  maxE  = 100.0 ; //! 
      
 //        static const double MCALEbsrlim0 = 0.701  ; //! MCAL bsr E range limits (Mev)    
 //        static const double MCALEbsrlim1 = 1.4021 ; //! 

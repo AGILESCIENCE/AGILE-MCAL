@@ -82,7 +82,7 @@ GTB_LIBQL2_LIB=$(libdir)
 ####### 3) Compiler, tools and options
 
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   =
+CFLAGS   = -std=c++11
 AR       = ar cqs
 TAR      = tar -cf
 GZIP     = gzip -9f

@@ -66,7 +66,7 @@ ICON_DIR = ui
 
 ####### 4) Compiler, tools and options
 
-CC       = gcc
+CC       = g++
 CXX      = g++
 #The root additional parameter
 ROOTCFLAGS   := $(shell root-config --cflags)

@@ -203,7 +203,7 @@ int MCVElectricalCalib::FitPeaks(int ipd, TH1F *aux, float xmin, float xmax)
 		cout << "PD " << ipd << ": no peak found" << endl;
 		return 0;
 	} else {
-		Float_t *xpeaks = s->GetPositionX();
+		Float_t *xpeaks = (Float_t*) s->GetPositionX();
 	
 		// fit peak 1
 		par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);

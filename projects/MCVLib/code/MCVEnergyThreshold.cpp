@@ -69,7 +69,7 @@ int MCVEnergyThreshold::Calculate()
 				cout << "*** bar " << i << " - PD-A - NO peak found!" << endl;
 				continue;
 			} else {
-				Float_t *xpeaks = s->GetPositionX();
+				Float_t *xpeaks = (Float_t*) s->GetPositionX();
 				int k50=1, k90=1;
 				float cmax=0.;
 				float c50=0.;

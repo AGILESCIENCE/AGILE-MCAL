@@ -74,7 +74,7 @@ int MCVGridOffset::Calculate()
 			//gramp[i] = 0.;
 			//continue;
 		} else {
-			Float_t *xpeaks = s->GetPositionX();
+			Float_t *xpeaks = (Float_t*) s->GetPositionX();
 			//cout << "bar " << i << " - PD-A - found peak at ch " << xpeaks[0] << endl;
 			par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);
 		}
@@ -110,7 +110,7 @@ int MCVGridOffset::Calculate()
 			//gramp[i+30] = 0.;
 			//continue;
 		} else {
-			Float_t *xpeaks = s->GetPositionX();
+			Float_t *xpeaks = (Float_t*)  s->GetPositionX();
 			//cout << "bar " << i << " - PD-B - found peak at ch " << xpeaks[0] << endl;
 			par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);
 		}
