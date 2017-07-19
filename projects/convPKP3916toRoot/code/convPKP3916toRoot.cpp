@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	cout << " Output: " << argv[2] << endl;
 	cout << " ECI: " << argv[3] << endl;
 		
-	fp3916 = new MCVFile3916(argv[1], 0, atoi(argv[3]));
+	fp3916 = new MCVFile3916(argv[1], 1, atoi(argv[3]));
 
 	cout << " calling CreateRootFile for 3916 data " << endl ; 
 	

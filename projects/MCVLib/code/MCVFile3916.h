@@ -61,9 +61,9 @@ class MCVFile3916 {
 		int 	nfields;
 		char 	comment[100];
 		int	contact;
-		Int_t *iX;		//!
-		Int_t *iY;		//!
-		Int_t *iZ;		//!
+		Long_t *iX;		//!
+		Long_t *iY;		//!
+		Long_t *iZ;		//!
 		Double_t *time;		//!
 		Double_t *ephi;		//!
 		Double_t *etheta;	//!

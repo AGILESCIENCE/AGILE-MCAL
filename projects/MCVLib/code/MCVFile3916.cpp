@@ -119,9 +119,9 @@ void MCVFile3916::LoadFitsFile()
 	
 	int icol=0;
 	char colname[10];
-	iX = new Int_t   [nevents] ;
-	iY = new Int_t   [nevents] ;
-	iZ = new Int_t   [nevents] ;
+	iX = new Long_t   [nevents] ;
+	iY = new Long_t   [nevents] ;
+	iZ = new Long_t   [nevents] ;
 	time   = new Double_t[nevents] ;
 	posvali  = new char[nevents];
 	ephi   = new Double_t[nevents] ;

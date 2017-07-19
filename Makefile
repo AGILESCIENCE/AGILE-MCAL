@@ -123,6 +123,7 @@ install:
 	cd ./$(PRJ_DIR)/mcalgrid		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
 	cd ./$(PRJ_DIR)/mcalimaging		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
 	cd ./$(PRJ_DIR)/convPKP3908toRoot	&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
+	cd ./$(PRJ_DIR)/convPKP3916toRoot       &&      $(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
 	cd ./$(PRJ_DIR)/viewbsr			&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
 	cd ./$(PRJ_DIR)/viewbsr_ric		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
 	cd ./$(PRJ_DIR)/mcalibration		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix) install
@@ -155,6 +156,7 @@ checkout:
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_1_6 hkmonitor
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_2_3 hkviewer
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_1_0 convPKP3908toRoot
+	cd ./$(PRJ_DIR)         &&      $(CVS)   convPKP3919toRoot
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_1_0 viewbsr
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_1_1 viewbsr_ric
 	cd ./$(PRJ_DIR) 	&&	$(CVS)  -r V_1_1_0 mcalibration	
@@ -207,6 +209,7 @@ clean:
 	cd $(PRJ_DIR)/mcalgrid			&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/mcalimaging		&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/convPKP3908toRoot		&& 	$(MAKE) prefix=$(prefix) clean
+	cd $(PRJ_DIR)/convPKP3916toRoot         &&      $(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/viewbsr			&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/viewbsr_ric		&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/mcalibration		&& 	$(MAKE) prefix=$(prefix) clean
@@ -216,6 +219,7 @@ clean:
 	cd $(PRJ_DIR)/root2fits			&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/mcalcor2fits		&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/makespectra		&& 	$(MAKE) prefix=$(prefix) clean
+
 	cd $(PRJ_DIR)/process3908		&& 	$(MAKE) prefix=$(prefix) clean
 	cd $(PRJ_DIR)/scirm_analysis		&& 	$(MAKE) prefix=$(prefix) clean
 
@@ -236,6 +240,7 @@ all:
 	cd ./$(PRJ_DIR)/mcalgrid		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
 	cd ./$(PRJ_DIR)/mcalimaging		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
 	cd ./$(PRJ_DIR)/convPKP3908toRoot	&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
+	cd ./$(PRJ_DIR)/convPKP3916toRoot       &&      $(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
 	cd ./$(PRJ_DIR)/viewbsr			&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
 	cd ./$(PRJ_DIR)/viewbsr_ric		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
 	cd ./$(PRJ_DIR)/plotmcaldata		&& 	$(MAKE) CFLAGS=$(CFLAGS) DEBUGMSG= prefix=$(prefix)
@@ -264,6 +269,7 @@ uninstall:
 	cd $(PRJ_DIR)/mcalgrid			&& 	$(MAKE) prefix=$(prefix) uninstall
 	cd $(PRJ_DIR)/mcalimaging		&& 	$(MAKE) prefix=$(prefix) uninstall
 	cd $(PRJ_DIR)/convPKP3908toRoot		&& 	$(MAKE) prefix=$(prefix) uninstall
+	cd $(PRJ_DIR)/convPKP3916toRoot         &&      $(MAKE) prefix=$(prefix) uninstall
 	cd $(PRJ_DIR)/viewbsr			&& 	$(MAKE) prefix=$(prefix) uninstall
 	cd $(PRJ_DIR)/viewbsr_ric		&& 	$(MAKE) prefix=$(prefix) uninstall
 	cd $(PRJ_DIR)/plotmcaldata		&& 	$(MAKE) prefix=$(prefix) uninstall
