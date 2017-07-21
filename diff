@@ -1,0 +1,338 @@
+diff --git a/Makefile b/Makefile
+index 0a5a6af..47abedc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -82,7 +82,7 @@ GTB_LIBQL2_LIB=$(libdir)
+ ####### 3) Compiler, tools and options
+ 
+ #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
+-CFLAGS   =
++CFLAGS   = -std=c++11
+ AR       = ar cqs
+ TAR      = tar -cf
+ GZIP     = gzip -9f
+diff --git a/projects/MCVLib/code/MCVElectricalCalib.cpp b/projects/MCVLib/code/MCVElectricalCalib.cpp
+index ee4e81d..9f873e5 100644
+--- a/projects/MCVLib/code/MCVElectricalCalib.cpp
++++ b/projects/MCVLib/code/MCVElectricalCalib.cpp
+@@ -203,7 +203,7 @@ int MCVElectricalCalib::FitPeaks(int ipd, TH1F *aux, float xmin, float xmax)
+ 		cout << "PD " << ipd << ": no peak found" << endl;
+ 		return 0;
+ 	} else {
+-		Float_t *xpeaks = s->GetPositionX();
++		Float_t *xpeaks = (Float_t*) s->GetPositionX();
+ 	
+ 		// fit peak 1
+ 		par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);
+diff --git a/projects/MCVLib/code/MCVEnergyThreshold.cpp b/projects/MCVLib/code/MCVEnergyThreshold.cpp
+index b09e337..5369505 100644
+--- a/projects/MCVLib/code/MCVEnergyThreshold.cpp
++++ b/projects/MCVLib/code/MCVEnergyThreshold.cpp
+@@ -69,7 +69,7 @@ int MCVEnergyThreshold::Calculate()
+ 				cout << "*** bar " << i << " - PD-A - NO peak found!" << endl;
+ 				continue;
+ 			} else {
+-				Float_t *xpeaks = s->GetPositionX();
++				Float_t *xpeaks = (Float_t*) s->GetPositionX();
+ 				int k50=1, k90=1;
+ 				float cmax=0.;
+ 				float c50=0.;
+diff --git a/projects/MCVLib/code/MCVGridOffset.cpp b/projects/MCVLib/code/MCVGridOffset.cpp
+index 573515e..27791e6 100644
+--- a/projects/MCVLib/code/MCVGridOffset.cpp
++++ b/projects/MCVLib/code/MCVGridOffset.cpp
+@@ -74,7 +74,7 @@ int MCVGridOffset::Calculate()
+ 			//gramp[i] = 0.;
+ 			//continue;
+ 		} else {
+-			Float_t *xpeaks = s->GetPositionX();
++			Float_t *xpeaks = (Float_t*) s->GetPositionX();
+ 			//cout << "bar " << i << " - PD-A - found peak at ch " << xpeaks[0] << endl;
+ 			par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);
+ 		}
+@@ -110,7 +110,7 @@ int MCVGridOffset::Calculate()
+ 			//gramp[i+30] = 0.;
+ 			//continue;
+ 		} else {
+-			Float_t *xpeaks = s->GetPositionX();
++			Float_t *xpeaks = (Float_t*)  s->GetPositionX();
+ 			//cout << "bar " << i << " - PD-B - found peak at ch " << xpeaks[0] << endl;
+ 			par[1] = aux->GetXaxis()->FindBin(xpeaks[0]);
+ 		}
+diff --git a/projects/MCVLib/code/MCVHisto3908.h b/projects/MCVLib/code/MCVHisto3908.h
+index 067c0e3..026a3e8 100644
+--- a/projects/MCVLib/code/MCVHisto3908.h
++++ b/projects/MCVLib/code/MCVHisto3908.h
+@@ -111,18 +111,18 @@ class MCVHisto3908
+         // for hist and plot msec are used as time units (on L1 fits we have microsec)
+ 	
+         static const int nummsec = 60000 ; //! num of msec for E-t histo ( 1 minutes ) 
+-        static const double minsec  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
+-        static const double maxsec  = 600000.0 ; //! step : 10 msec 
++        static const long minsec  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
++        static const long maxsec  = 600000.0 ; //! step : 10 msec 
+      
+ //        static const int nummsec_ric ; //unused, the time step == sit integration time 
+-        static const double minsec_ric  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
+-        static const double maxsec_ric  = 600000.0 ; //! step : 10 msec 
++        static const long minsec_ric  = 0.0      ; //! E-t: t range: from 0 to 10 minutes 
++        static const long maxsec_ric  = 600000.0 ; //! step : 10 msec 
+ 
+ 
+         int numE ;                          //! num of E points 
+-        static const double stepE = 0.500 ; //! bin step: UNITS: MEV 
+-        static const double minE  = 0.0   ; //! E-t: E range: from 0 to 100 Mev 
+-        static const double maxE  = 100.0 ; //! 
++        static const long stepE = 0.500 ; //! bin step: UNITS: MEV 
++        static const long  minE  = 0.0   ; //! E-t: E range: from 0 to 100 Mev 
++        static const long  maxE  = 100.0 ; //! 
+      
+ //        static const double MCALEbsrlim0 = 0.701  ; //! MCAL bsr E range limits (Mev)    
+ //        static const double MCALEbsrlim1 = 1.4021 ; //! 
+diff --git a/projects/convPKP3908toRoot/Makefile b/projects/convPKP3908toRoot/Makefile
+index 2056b3d..b296c67 100644
+--- a/projects/convPKP3908toRoot/Makefile
++++ b/projects/convPKP3908toRoot/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/hkmonitor/Makefile b/projects/hkmonitor/Makefile
+index 7cd4c88..26f87b6 100644
+--- a/projects/hkmonitor/Makefile
++++ b/projects/hkmonitor/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/hkviewer/Makefile b/projects/hkviewer/Makefile
+index 4b71ef8..e48ae7b 100644
+--- a/projects/hkviewer/Makefile
++++ b/projects/hkviewer/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/makespectra/Makefile b/projects/makespectra/Makefile
+index e678203..4c8f488 100644
+--- a/projects/makespectra/Makefile
++++ b/projects/makespectra/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalanalyzer/Makefile b/projects/mcalanalyzer/Makefile
+index 4b81aba..0316959 100644
+--- a/projects/mcalanalyzer/Makefile
++++ b/projects/mcalanalyzer/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalcor2fits/Makefile b/projects/mcalcor2fits/Makefile
+index 07eea46..7827e02 100644
+--- a/projects/mcalcor2fits/Makefile
++++ b/projects/mcalcor2fits/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalgrid/Makefile b/projects/mcalgrid/Makefile
+index 7a7b2fa..b81c9da 100644
+--- a/projects/mcalgrid/Makefile
++++ b/projects/mcalgrid/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalibration/Makefile b/projects/mcalibration/Makefile
+index 9384463..1ce43b4 100644
+--- a/projects/mcalibration/Makefile
++++ b/projects/mcalibration/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalimaging/Makefile b/projects/mcalimaging/Makefile
+index 2837d10..afb8656 100644
+--- a/projects/mcalimaging/Makefile
++++ b/projects/mcalimaging/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mcalselect/Makefile b/projects/mcalselect/Makefile
+index 53df9c3..49532d8 100644
+--- a/projects/mcalselect/Makefile
++++ b/projects/mcalselect/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/mergedataset/Makefile b/projects/mergedataset/Makefile
+index d7be466..26d03c7 100644
+--- a/projects/mergedataset/Makefile
++++ b/projects/mergedataset/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/plotgrb/Makefile b/projects/plotgrb/Makefile
+index 535fd7e..1acabde 100644
+--- a/projects/plotgrb/Makefile
++++ b/projects/plotgrb/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/plotmcaldata/Makefile b/projects/plotmcaldata/Makefile
+index 7e0bb5e..7368605 100644
+--- a/projects/plotmcaldata/Makefile
++++ b/projects/plotmcaldata/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/process3908/Makefile b/projects/process3908/Makefile
+index 515bffd..b72f023 100644
+--- a/projects/process3908/Makefile
++++ b/projects/process3908/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/root2fits/Makefile b/projects/root2fits/Makefile
+index 1666a8c..6a6ef14 100644
+--- a/projects/root2fits/Makefile
++++ b/projects/root2fits/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/scirm_analysis/Makefile b/projects/scirm_analysis/Makefile
+index 6400884..12fb01b 100644
+--- a/projects/scirm_analysis/Makefile
++++ b/projects/scirm_analysis/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/viewbsr/Makefile b/projects/viewbsr/Makefile
+index 720561a..35d96df 100644
+--- a/projects/viewbsr/Makefile
++++ b/projects/viewbsr/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/viewbsr_ric/Makefile b/projects/viewbsr_ric/Makefile
+index 485c008..5de0773 100644
+--- a/projects/viewbsr_ric/Makefile
++++ b/projects/viewbsr_ric/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)
+diff --git a/projects/viewrun/Makefile b/projects/viewrun/Makefile
+index 38ae73f..3523d45 100644
+--- a/projects/viewrun/Makefile
++++ b/projects/viewrun/Makefile
+@@ -66,7 +66,7 @@ ICON_DIR = ui
+ 
+ ####### 4) Compiler, tools and options
+ 
+-CC       = gcc
++CC       = g++
+ CXX      = g++
+ #The root additional parameter
+ ROOTCFLAGS   := $(shell root-config --cflags)

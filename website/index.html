@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--TODO il numero della orbita deve sempre essere un link che porta a dettagli orbita-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AGILE MCAL Home</title>
+
+
+  <script src="js/jquery-3.0.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="DataTables/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="DataTables/responsive.bootstrap.min.css">
+  <script type="text/javascript" charset="utf8" src="DataTables/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="DataTables/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="DataTables/dataTables.responsive.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="DataTables/responsive.bootstrap.min.js"></script>
+
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/agilemcal.css">
+
+  <script language = "javascript" type = "text/javascript">
+
+  function loadData()
+  {
+    // start loader
+    document.getElementById("loader").style.display="block";
+
+    // ajax call
+
+    $.ajax({ cache: false,
+      url:'get_orbit_list.php',
+      type:'get',
+      data: {'event_type':1},
+      contentType: "application/json; charset=utf-8",
+      async: false
+
+    }).done(function (data) {
+
+      console.log(data);
+      var orbit_list = JSON.parse(data);
+
+      document.getElementById('orbit-table-row').style.display="block";
+      document.getElementById("loader").style.display="none";
+
+      var dataSet = new Array();
+
+      for(var i = 0 ; i<orbit_list.length ; i++)
+      {
+
+        var id_orbit,trend,orbit_number,tgf_number,grb_number,ste_number;
+
+        id_orbit = orbit_list[i].id_orbit;
+        trend = orbit_list[i].trend;
+        orbit_number = orbit_list[i].orbit_number;
+        tgf_number = orbit_list[i].tgf_number;
+        grb_number = orbit_list[i].grb_number;
+        ste_number = orbit_list[i].ste_number;
+
+
+        // add table data
+        dataSet[i] = new Array();
+
+        for (var j = 0; j <=4; j++) {
+
+          if(j==0)
+          {
+            dataSet[i][j] =orbit_number;
+          }
+          if(j==1)
+          {
+            dataSet[i][j] =grb_number;
+          }
+          if(j==2)
+          {
+            dataSet[i][j] =ste_number;
+          }
+          if(j==3)
+          {
+            dataSet[i][j] =tgf_number;
+          }
+          if(j==4)
+          {
+            var link_trend = "./trend.php?file_name="+trend+"&orbit_number="+orbit_number
+            var link_tgf = "./detail_orbit.php?show=3"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
+            var link_grb = "./detail_orbit.php?show=1"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
+            var link_ste = "./detail_orbit.php?show=2"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
+            dataSet[i][j] = '<button type="submit" onclick="location.href=\''+link_trend+'\'" return false;" class="btn btn-success" >Open Orbit Trend</button><button type="submit" onclick="location.href=\''+link_grb+'\'" return false;" class="btn btn-success">Show GRB List</button><button type="submit" onclick="location.href=\''+link_ste+'\'" return false;" class="btn btn-success" >Show STE List</button><button type="submit" onclick="location.href=\''+link_tgf+'\'" return false;" class="btn btn-success" >Show TGF List</button>';
+
+          }
+        }
+      }
+      if ( $.fn.dataTable.isDataTable( '#orbit-table') ) // se la tabella esiste già
+      {
+        var table = new $.fn.dataTable.Api( '#orbit-table' ).clear();
+        table.rows.add(dataSet).draw();
+      }
+      else
+      {
+        console.log("create table");
+        var table = $('#orbit-table').DataTable( {
+        //  responsive:true,
+
+          columns: [
+            { title:"Orbit Number"},
+            { title:"GRB Number" },
+            { title:"STE Number"},
+            { title:"TGF Number"},
+            { title: "Light Curve" }
+
+          ]
+        } );
+        table.rows.add(dataSet).draw();
+      }
+
+
+
+    }).fail(function (jqXHR, textStatus) {
+      console.log("error");
+      console.log(textStatus);
+    });
+
+  }
+
+  </script>
+
+
+</head>
+
+<body onload="loadData();">
+
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">AGILE MCAL</a>
+      </div>
+
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li ><a href="grb.html">GRB</a></li>
+          <li><a href="ste.html">STE</a></li>
+          <li><a href="tgf.html">TGF</a></li>
+
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+
+
+  </nav>
+
+
+  <div class="container-fluid">
+  <h3>Orbit List</h3>
+    <div class="row" style="">
+
+      <div class="col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5" id="loader" >
+
+      </div>
+
+    </div>
+    <div class="row" id="orbit-table-row" style="display:none;" >
+
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="orbit-table-div" >
+        <table id="orbit-table" class = "table table-striped  dt-responsive " cellspacing="0" width="100%"> </table>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  </body>
+
+
+
+  </html>

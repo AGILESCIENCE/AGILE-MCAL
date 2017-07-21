@@ -1,0 +1,173 @@
+#loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+
+    animation: spin 2s linear infinite;
+
+}
+#loader2 {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+
+    animation: spin 2s linear infinite;
+
+}
+.loader2 {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+
+    animation: spin 2s linear infinite;
+
+}
+.tablebtn{
+
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.btnlc {
+   margin-left:10px;
+
+}
+.btn{
+ margin-left:10px;
+ margin-right:10px;
+ margin-top:10px;
+ margin-bottom:10px;
+}
+.svg-container
+{
+	position:static !important;
+}
+.light-curve-0
+{
+	border: 2px solid black;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+label
+{
+	padding-top:10px;
+}
+
+body {
+      padding-top: 50px;
+
+}
+.form {
+	padding: 40px 15px 15px 15px;
+	text-align: left;
+}
+.container-fluid {
+
+	width:90%;
+
+}
+#divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:2px;
+ width:100%;
+ border-top:1px solid gray;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+	#loader
+	{
+		width: 200px;
+   		height: 200px;
+	}
+	.loader2
+	{
+		width: 100px;
+   		height: 100px;
+	}
+
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+	#loader
+	{
+		width: 150px;
+   		height: 150px;
+	}
+	.loader2
+	{
+		width: 70px;
+   		height: 70px;
+	}
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+	#loader
+	{
+		width: 100px;
+   		height: 100px;
+	}
+	.loader2
+	{
+		width: 50px;
+   		height: 50px;
+	}
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+	#loader
+	{
+		width: 60px;
+   		height: 60px;
+	}
+	.loader2
+	{
+		width: 30px;
+   		height: 30px;
+	}
+
+	.container-fluid
+	{
+
+		width:100%;
+
+	}
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+	#loader
+	{
+		width: 60px;
+   		height: 60px;
+	}
+	.loader2
+	{
+		width: 30px;
+   		height: 30px;
+	}
+
+	.container-fluid
+	{
+
+		width:100%;
+
+	}
+}
