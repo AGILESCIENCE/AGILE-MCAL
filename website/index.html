@@ -73,29 +73,38 @@
 
           if(j==0)
           {
-            dataSet[i][j] =orbit_number;
+              dataSet[i][j] = orbit_number;
+
           }
           if(j==1)
           {
-            dataSet[i][j] =grb_number;
+
+              dataSet[i][j] =grb_number;
           }
           if(j==2)
           {
+
             dataSet[i][j] =ste_number;
           }
           if(j==3)
           {
+
             dataSet[i][j] =tgf_number;
           }
           if(j==4)
           {
-            var link_trend = "./trend.php?file_name="+trend+"&orbit_number="+orbit_number
-            var link_tgf = "./detail_orbit.php?show=3"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
+            var link_trend = "./trend.php?file_name="+trend+"&orbit_number="+orbit_number;
+
+            var link_trigger = "./trigger.php?id_orbit="+id_orbit+"&orbit_number="+orbit_number;
             var link_grb = "./detail_orbit.php?show=1"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
             var link_ste = "./detail_orbit.php?show=2"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
-            dataSet[i][j] = '<button type="submit" onclick="location.href=\''+link_trend+'\'" return false;" class="btn btn-success" >Open Orbit Trend</button><button type="submit" onclick="location.href=\''+link_grb+'\'" return false;" class="btn btn-success">Show GRB List</button><button type="submit" onclick="location.href=\''+link_ste+'\'" return false;" class="btn btn-success" >Show STE List</button><button type="submit" onclick="location.href=\''+link_tgf+'\'" return false;" class="btn btn-success" >Show TGF List</button>';
+
+            var link_tgf = "./detail_orbit.php?show=3"+"&id_orbit="+id_orbit+"&orbit_number="+orbit_number;
+
+             dataSet[i][j] =" <button type=\"submit\" onclick=\"location.href='"+link_trend+"'\" class=\"btn btn-success\" >Orbit Trend</button><button type=\"submit\" onclick=\"location.href='"+link_trigger+"'\" class=\"btn btn-success\" >Trigger List</button>"+" <button type=\"submit\" onclick=\"location.href='"+link_grb+"'\" class=\"btn btn-success\">Show GRB List</button>"+"<button type=\"submit\" onclick=\"location.href='"+link_ste+"'\" class=\"btn btn-success\" >Show STE List</button>"+"<button type=\"submit\" onclick=\"location.href='"+link_tgf+"'\" class=\"btn btn-success\" >Show TGF List</button>"
 
           }
+
         }
       }
       if ( $.fn.dataTable.isDataTable( '#orbit-table') ) // se la tabella esiste già
@@ -108,14 +117,13 @@
         console.log("create table");
         var table = $('#orbit-table').DataTable( {
         //  responsive:true,
-
+          "order": [[ 0, "desc" ]],
           columns: [
             { title:"Orbit Number"},
             { title:"GRB Number" },
             { title:"STE Number"},
             { title:"TGF Number"},
-            { title: "Light Curve" }
-
+            { title:"Actions"}
           ]
         } );
         table.rows.add(dataSet).draw();

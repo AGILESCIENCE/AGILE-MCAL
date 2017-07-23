@@ -15,7 +15,7 @@ $dbh = new PDO('mysql:host='.$config['host'].';dbname='.$config['database'].';po
 
 // get orbit lcfirst
 
-$query = "SELECT * from orbit";
+$query = "SELECT * from orbit order by orbit_number desc";
 
 //echo $query;
 

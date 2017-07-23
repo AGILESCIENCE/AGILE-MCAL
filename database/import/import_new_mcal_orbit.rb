@@ -11,6 +11,7 @@ require 'mysql'
 require './config'
 
 slurm = 1
+software_path = "/home/rt/AGILE-MCAL/database/import"
 
 begin
 
@@ -29,6 +30,13 @@ begin
     orbit_dir = dir.split("/").last
     puts "dir"+orbit_dir
 
+    if (!File.exist?(dir+"/"+orbit_dir+"_triggers.txt")) then
+
+
+        puts "analysis not started"
+        next
+    end
+
     find = false
 
     query = "select orbit_number from orbit"
@@ -45,7 +53,7 @@ begin
     end
 
     if(!find)
-
+      puts "orbit not in db"
       job_list =  %x[squeue --format=%j]
 
       job_list =  job_list.split("\n")
@@ -53,7 +61,7 @@ begin
       job_list.each do |job_name|
         puts job_name
         if(job_name.delete("\n") == "CALPIPE_"+orbit_dir )
-          puts "gia esistente"
+          puts "job in corso"
           find_generation = true
         end
 
@@ -66,7 +74,7 @@ begin
       job_list.each do |job_name|
         puts job_name
         if(job_name.delete("\n") == "import_"+orbit_dir )
-          puts "gia esistente"
+          puts "job in corso"
           find_import = true
         end
 
@@ -75,11 +83,12 @@ begin
       if(!find_generation && !find_import)
 
         if(slurm==1)
-          cmd =  "sbatch --partition=large submit_mcal_orbit.sh "+orbit_archive_dir+"/"+orbit_dir
+          Dir.chdir(orbit_archive_dir+"/"+orbit_dir)
+          cmd =  "sbatch --partition=large "+software_path+"/submit_mcal_orbit.sh "+orbit_archive_dir+"/"+orbit_dir
           system(cmd)
         else
           puts "importa "+orbit_archive_dir+"/"+orbit_dir
-          system("ruby import_mcal_orbit.rb "+orbit_archive_dir+"/"+orbit_dir)
+          system("ruby "+software_path+"/import_mcal_orbit.rb "+orbit_archive_dir+"/"+orbit_dir)
         end
       end
     else

@@ -1,2 +1,0 @@
-/usr/sbin/job00054/slurm_script: line 7: cd: /home/rt/AGILE-MCAL/database/impot: File o directory non esistente
-/usr/sbin/job00054/slurm_script: line 8: LOG/import_mcal_orbit.rb: File o directory non esistente
