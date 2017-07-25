@@ -18,7 +18,7 @@
 # $ python MCAL-PIPE.py 50315                                                         #
 #			/data01/ASDC_PROC2/DATA_2/COR/PKP050315_1_3908_000.lv1.cor.gz #
 #			/data01/ASDC_PROC2/DATA_2/COR/PKP050315_1_3916_000.lv1.cor.gz #
-#			/ANALYSIS3/AGILE-MCAL/050315                                  #
+#			/home/rt/ursipipe/OUT                                         #
 #                                                                                     #
 #######################################################################################
 
@@ -35,23 +35,17 @@ import matplotlib.ticker as ticker
 from mpl_toolkits.basemap import Basemap
 import time
 
-CONT = int(sys.argv[1])
-INPATH_3908_FITS = str(sys.argv[2])
-INPATH_3916_FITS = str(sys.argv[3])
-OUTPATH_ROOT = str(sys.argv[4])
-GRB_BIN = float(sys.argv[5])
-GRB_SIGMA = float(sys.argv[6])
-STE_SIGMA = float(sys.argv[7])
-
-
-
-
 ##########
 # STEP 0 #
 ##########
 ####################################################
 # CONVERSION OF 3908/3916 FITS FILES TO ROOT FILES #
 ####################################################
+
+CONT = int(sys.argv[1])
+INPATH_3908_FITS = str(sys.argv[2])
+INPATH_3916_FITS = str(sys.argv[3])
+OUTPATH_ROOT = str(sys.argv[4])
 
 # creation of 3908 root file
 
@@ -76,9 +70,6 @@ os.system("/home/rt/AGILE-MCAL/projects/convPKP3916toRoot/convPKP3916toRoot %s %
 os.system("mkdir %s/TGF" % OUTPATH_ROOT)
 os.system("mkdir %s/GRB" % OUTPATH_ROOT)
 os.system("mkdir %s/STE" % OUTPATH_ROOT)
-
-
-
 
 ##########
 # STEP 1 #
@@ -109,9 +100,6 @@ TGF_DATE = []
 TGF_TIME = []
 TGF_LC = []
 
-TGF_BIN = 0.001
-map = None
-
 fo = open("%s/TGF_%06.d_list.txt" % (OUTPATH_ROOT, CONT), "r")
 
 for line in fo:
@@ -132,6 +120,10 @@ for line in fo:
         TGF_LAT.append(float(columns[12]))
 
 fo.close()
+
+TGF_BIN = 0.001
+
+map = None
 
 for i in range(0, len(TGF_CONTACT)):
 
@@ -168,17 +160,17 @@ for i in range(0, len(TGF_CONTACT)):
 	TGF_hist, TGF_bin_edges = np.histogram(TGF_t, bins=TGF_BS)
 
 	for TGF_n in range(0,TGF_N_BIN-1):
-		TGF_LIGHTCURVE[TGF_n]=[TGF_BS[TGF_n+1], TGF_hist[TGF_n]]
+	    TGF_LIGHTCURVE[TGF_n]=[TGF_BS[TGF_n+1], TGF_hist[TGF_n]]
 
 	fig = plt.figure(figsize=(18,12))
-	axTGF1 = fig.add_subplot(211)
-	axTGF1.step(TGF_LIGHTCURVE[:,0], TGF_LIGHTCURVE[:,1], markersize=5, c='black')
-	plt.setp(axTGF1.get_xticklabels(), fontsize=16)
-	plt.setp(axTGF1.get_yticklabels(), fontsize=16)
-	axTGF1.set_xlim(-0.015,0.015)
-	axTGF1.set_ylim(0,max(TGF_hist)+1)
-	axTGF1.set_ylabel('[counts / %d ms]\n0.35 - 100 MeV\n' % (TGF_BIN*1000.), fontsize=20)
-	axTGF1.set_title('TGF - CONTACT %06.d - T0 %f\n' % (TGF_CONTACT[i], TGF_T0[i]), fontsize=22)
+	ax0 = fig.add_subplot(211)
+	ax0.step(TGF_LIGHTCURVE[:,0], TGF_LIGHTCURVE[:,1], markersize=5, c='black')
+	plt.setp(ax0.get_xticklabels(), fontsize=16)
+	plt.setp(ax0.get_yticklabels(), fontsize=16)
+	ax0.set_xlim(-0.015,0.015)
+	ax0.set_ylim(0,max(TGF_hist)+1)
+	ax0.set_ylabel('[counts / %d ms]\n0.35 - 100 MeV\n' % (TGF_BIN*1000.), fontsize=20)
+	ax0.set_title('TGF - CONTACT %06.d - T0 %f\n' % (TGF_CONTACT[i], TGF_T0[i]), fontsize=22)
 
 	# plot TGF lightcurve and energy scatter plot
 
@@ -187,20 +179,20 @@ for i in range(0, len(TGF_CONTACT)):
 	for j in range(0,len(TGF_t)-1):
 		TGF_ENERGIES[j] = [TGF_t[j], TGF_E[j]]
 
-	axTGF2 = fig.add_subplot(212)
-	axTGF2.scatter(TGF_ENERGIES[:,0], TGF_ENERGIES[:,1])
-	plt.setp(axTGF2.get_xticklabels(), fontsize=16)
-	plt.setp(axTGF2.get_yticklabels(), fontsize=16)
-	axTGF2.set_ylim(0,40)
-	axTGF2.set_xlim(-0.015,0.015)
-	axTGF2.set_xlabel('\ntime - %s [s]' % TGF_T0[i], fontsize=20)
-	axTGF2.set_ylabel('E [MeV]\n', fontsize=20)
+	ax7 = fig.add_subplot(212)
+	ax7.scatter(TGF_ENERGIES[:,0], TGF_ENERGIES[:,1])
+	plt.setp(ax7.get_xticklabels(), fontsize=16)
+	plt.setp(ax7.get_yticklabels(), fontsize=16)
+	ax7.set_ylim(0,40)
+	ax7.set_xlim(-0.015,0.015)
+	ax7.set_xlabel('\ntime - %s [s]' % TGF_T0[i], fontsize=20)
+	ax7.set_ylabel('E [MeV]\n', fontsize=20)
 	plt.savefig('%s/TGF/TGF_%06.d_%f.png' % (OUTPATH_ROOT, TGF_CONTACT[i], TGF_T0[i]) )
 
 	# plot TGF position on a world map
 
 	fig = plt.figure(figsize=(18,6))
-	axTGF3 = fig.add_subplot(111)
+	ax8 = fig.add_subplot(111)
 	map = Basemap(projection='cyl', lat_0 = 57, lon_0 = -135, resolution = 'c', area_thresh = 0.1, llcrnrlon=-180.0, llcrnrlat=-20.0, urcrnrlon=180.0, urcrnrlat=20.0)
 	map.drawcoastlines()
 	map.drawcountries()
@@ -220,15 +212,14 @@ if (os.stat("%s/TGF_%06.d_list.txt" % (OUTPATH_ROOT, CONT)).st_size == 0):
 else:
 	os.system("mv %s/TGF_%06.d_list.txt %s/TGF/" % (OUTPATH_ROOT, CONT, OUTPATH_ROOT))
 
-
-
-
 ##########
 # STEP 2 #
 ##########
 ###################
 # SEARCH FOR GRBs #
 ###################
+
+GRB_BIN = 0.064
 
 # read 3908 root file to get the times
 
@@ -313,7 +304,7 @@ for N in range(0,GRB_N_TRG):
 		GRB_LIGHTCURVE[m]=[GRB_BS[m+1], GRB_hist[m]]
 
 	GRB_BKG = np.mean(GRB_LIGHTCURVE[ np.where( (GRB_LIGHTCURVE[:,1] != 0 ) ), 1 ])
-	GRB_THR = GRB_BKG + GRB_SIGMA*math.sqrt(GRB_BKG)
+	GRB_THR = GRB_BKG + 6*math.sqrt(GRB_BKG)
 
 	# number of triggered events for a given threshold
 
@@ -353,9 +344,6 @@ if (os.stat("%s/GRB_%06.d_list.txt" % (OUTPATH_ROOT, CONT)).st_size == 0):
 	os.system("rm %s/GRB_%06.d_list.txt" % (OUTPATH_ROOT, CONT))
 else:
 	os.system("mv %s/GRB_%06.d_list.txt %s/GRB/" % (OUTPATH_ROOT, CONT, OUTPATH_ROOT) )
-
-
-
 
 ##########
 # STEP 3 #
@@ -479,9 +467,6 @@ if (os.stat("%s/STE_%06.d_list.txt" % (OUTPATH_ROOT, CONT)).st_size == 0):
 	os.system("rm %s/STE_%06.d_list.txt" % (OUTPATH_ROOT, CONT))
 else:
 	os.system("mv %s/STE_%06.d_list.txt %s/STE/" % (OUTPATH_ROOT, CONT, OUTPATH_ROOT))
-
-
-
 
 print "\n---> FINISHED"
 
