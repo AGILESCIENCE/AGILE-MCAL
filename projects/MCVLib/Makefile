@@ -84,7 +84,7 @@ ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include -I$(ROOTSYS)/include/root 
 
 # NB: e' fondamentale aggiungere -lSpectrum a ROOTCONFLIB altrimenti gli altri eseguibili non linkano! root-config non lo genera
 
-ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -lSpectrum -Llib -lCint -lm -ldl -rdynamic -lGeom
+ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -lSpectrum -Llib  -lm -ldl -rdynamic -lGeom
 #ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -Llib -lCint -lm -ldl -rdynamic -lGeom
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = -g
@@ -207,7 +207,7 @@ rootdict: $(OBJECTS)
 	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -I$(SOURCE_DIR) -c $(SOURCE_DIR)/$(ROOTDICT).cpp -o $(OBJECTS_DIR)/$(ROOTDICT).o
 
 #rootdict  IMPORTANTE
-staticlib: makelibdir makeobjdir rootdict $(OBJECTS)
+staticlib:  makelibdir makeobjdir rootdict $(OBJECTS)
 		test -d $(LIB_DESTDIR) || mkdir -p $(LIB_DESTDIR)
 		$(DEL_FILE) $(LIB_DESTDIR)/$(TARGETA)
 		$(AR) $(LIB_DESTDIR)/$(TARGETA) $(OBJECTS_DIR)/*.o

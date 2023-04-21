@@ -48,7 +48,7 @@ class GRB3913XZ  {
 		void SpectralAnalysis();
 		void CustomSpectralAnalysis();
 		void SetGRBBoundaries( double tbkgini, double tbkgfin, double tgrbini, double tgrbfin);
-		ClassDef(GRB3913XZ,1);				//!< required for ROOT dictionary generation using rootcint
+		ClassDef(GRB3913XZ,0);				//!< required for ROOT dictionary generation using rootcint
 };
 
 

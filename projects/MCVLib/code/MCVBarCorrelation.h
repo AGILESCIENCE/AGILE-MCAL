@@ -39,7 +39,7 @@ class MCVBarCorrelation : public MCVStdAnalysis {
 		~MCVBarCorrelation();
 		virtual int Calculate();	//!< Fit the muon Landau peaks.
 		virtual void PrintResults();	//!< Print peak energy values
-		ClassDef(MCVBarCorrelation,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBarCorrelation,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

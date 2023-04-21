@@ -38,7 +38,7 @@ class MCVFileTE : public MCVFile, public MCVHisto {
 		double *GetCountRate(double tini, double tstep, int nstep);
 		double *GetCountRate(int bar, double tini, double tstep, int nstep);
 		void ProcessData();
-		ClassDef(MCVFileTE,1);
+		ClassDef(MCVFileTE,0);
 };
 
 #endif

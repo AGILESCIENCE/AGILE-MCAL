@@ -83,7 +83,7 @@ class MCVStdAnalysis {
 		void SetFileInfo(MCVFileInfo *in);			//!< Set pointer to file info
 		void SetHistoCollection(TObjArray *hc);			//!< Set pointer to the histogram collection
 		virtual void UpdateGlobalFile();			//!< Update global file
-		ClassDef(MCVStdAnalysis,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVStdAnalysis,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 

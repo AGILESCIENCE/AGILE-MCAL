@@ -115,7 +115,7 @@ class MCVFile3916 {
 		void PrintResults();
 		void WriteRootFile(const char *name);
 		int IsRoot(){return isRoot;};
-		ClassDef(MCVFile3916,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVFile3916,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

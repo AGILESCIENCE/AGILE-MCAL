@@ -60,7 +60,7 @@ class MCVSelection : public TNamed {
 		~MCVSelection();
 		void PrintSelection();
 		void SetDefault();
-		ClassDef(MCVSelection,1);
+		ClassDef(MCVSelection,0);
 };
 
 #endif

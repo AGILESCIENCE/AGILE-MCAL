@@ -57,7 +57,7 @@ class MCVGridEnergyCal : public MCVStdAnalysis {
 		virtual void PrintResults();	//!< Print peak energy values
 		virtual void SaveToFile();	//!< Save data to file
 		void UpdateCalibrationFile();
-		ClassDef(MCVGridEnergyCal,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVGridEnergyCal,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

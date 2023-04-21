@@ -65,7 +65,7 @@ class MCVGridOffset : public MCVStdAnalysis {
 		virtual void SaveToFile();		//!< Save offset calculation results to a text file
 		virtual void UpdateGlobalFile();
 		void UpdateCalibrationFile();
-		ClassDef(MCVGridOffset,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVGridOffset,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

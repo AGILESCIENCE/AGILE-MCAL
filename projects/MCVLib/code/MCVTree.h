@@ -80,7 +80,7 @@ class MCVTree : public MCVFile, public MCVHisto {
 		while leaving intact the timetag column
 		*/
 		void		UpdateSciRM();		//!< Update Scientific Ratemeters according ONLY to time selection
-		ClassDef(MCVTree,1);			//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVTree,0);			//!< Required for ROOT dictionary generation using rootcint
 };	
 
 #endif

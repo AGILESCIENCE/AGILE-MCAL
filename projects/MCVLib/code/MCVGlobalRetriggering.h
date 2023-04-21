@@ -63,7 +63,7 @@ class MCVGlobalRetriggering : public MCVStdAnalysis {
 		~MCVGlobalRetriggering();
 		virtual int Calculate();	//!< Search for retriggering in burst data.
 		virtual void PrintResults();	//!< Print retriggering calculation results
-		ClassDef(MCVGlobalRetriggering,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVGlobalRetriggering,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

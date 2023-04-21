@@ -57,7 +57,7 @@ class MCVFitPeak : public MCVStdAnalysis {
 		void	SetUpperDE(double dh) {dEhi = dh;};
 		void	SetLowerDE(double dl) {dElo = dl;};
 		void	UpdateFit(int bar, double cen, double sig, double amp, double rk2);
-		ClassDef(MCVFitPeak,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVFitPeak,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

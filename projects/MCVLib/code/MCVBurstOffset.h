@@ -48,7 +48,7 @@ class MCVBurstOffset : public MCVStdAnalysis {
 		virtual void SaveToFile();	//!< Save 
 		void UpdateCalibrationFile();
 		double *GetPeakCenter(){return pc;};
-		ClassDef(MCVBurstOffset,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBurstOffset,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

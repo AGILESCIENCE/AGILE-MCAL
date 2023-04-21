@@ -69,7 +69,7 @@ class MCVFileInfo : public TNamed {
 		~MCVFileInfo();	//virtual 
 		void PrintCalibrationParameters();	
 		void PrintFileInfo();			
-		ClassDef(MCVFileInfo,1);		
+		ClassDef(MCVFileInfo,0);		
 };
 
 #endif

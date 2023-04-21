@@ -57,7 +57,7 @@ class MCVCountRate : public MCVStdAnalysis {
 		
 		virtual void PrintResults();	//!< Print caount rate calculation results
 		virtual void SaveToFile();	//!< Save offset calculation results to a text file
-		ClassDef(MCVCountRate,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVCountRate,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

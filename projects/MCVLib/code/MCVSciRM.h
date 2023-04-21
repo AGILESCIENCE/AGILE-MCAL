@@ -71,7 +71,7 @@ class MCVSciRM : public MCVStdAnalysis {
 		virtual void PrintResults();	//!< Print calculation results
 		virtual void SaveToFile();
 		virtual void UpdateGlobalFile();
-		ClassDef(MCVSciRM,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVSciRM,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

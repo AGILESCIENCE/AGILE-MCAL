@@ -42,7 +42,7 @@ class MCVFilePKP : public MCVFile, public MCVHisto {
 		void Process3909Data();		//!< Process BURST data (39.09 or 39.08 TM packet)
 		void ProcessTrigTrackData();	//!< Process DAFNE tagged data (39.02 TM packet)
 		void PrintEvent(int);		//!< Print an event info
-		ClassDef(MCVFilePKP,1);		//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVFilePKP,0);		//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

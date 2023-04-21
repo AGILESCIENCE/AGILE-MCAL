@@ -30,7 +30,7 @@ class GRB3913  : public GRB {
 		GRB3913(TString rootfile, int plane=0);
 		~GRB3913();
 		int LightCurve(double t0L, double tpre, double tpost);
-		ClassDef(GRB3913,1);				//!< required for ROOT dictionary generation using rootcint
+		ClassDef(GRB3913,0);				//!< required for ROOT dictionary generation using rootcint
 };
 
 

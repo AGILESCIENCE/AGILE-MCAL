@@ -94,7 +94,7 @@ class MCVHisto3908
 	void FillGraph3908( int numpoint, MCALbsr * currbsr) ; // to fill: TGraph gdr*
         void FillGlobalHisto3908( )  ;  
 		    
-	ClassDef(MCVHisto3908,1); //!< required for ROOT dictionary generation using rootcint
+	ClassDef(MCVHisto3908,0); //!< required for ROOT dictionary generation using rootcint
 
      private: 
 	       

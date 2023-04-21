@@ -68,7 +68,7 @@ class MCVElectricalCalib : public MCVStdAnalysis {
 		virtual void SaveToFile();
 		void SetNPeaks(int np) {pnum = np;};
 		void SetThreshold(int th) {thr = th;};
-		ClassDef(MCVElectricalCalib,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVElectricalCalib,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

@@ -188,7 +188,7 @@ class MCVRawMonitor : public TGTransientFrame {
 		void 		SetHistoCollection(TObjArray *hc);	//!< Set pointer to the main histogram collection
 		TObjArray	*GetHistoCollection() {return rawHisto;};	//!< Return pointer to the main histogram collection
 		MCVFileInfo 	*GetFileInfo() {return fileInfo;};		//!< Return pointer to run info
-		ClassDef(MCVRawMonitor,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVRawMonitor,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

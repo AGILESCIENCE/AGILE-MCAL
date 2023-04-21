@@ -48,7 +48,7 @@ class MCVBurst  : public TNamed {	//! structure with main burst information
 		MCVBurst(const char *name);
 		~MCVBurst();
 		void PrintInfo();
-		ClassDef(MCVBurst,1);			//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBurst,0);			//!< Required for ROOT dictionary generation using rootcint
 };	
 
 #endif

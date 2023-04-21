@@ -78,7 +78,7 @@ ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include -I$(ROOTSYS)/include/root 
 #-Woverloaded-virtual 
 #ROOTCONF += -DG__REGEXP -DG__UNIX -DG__SHAREDLIB -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO
 #ROOTCONFLIB=-L$(ROOTSYS)/lib -lCore -lCint -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lGui -lpthread -lm -ldl -rdynamic
-ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -Llib -lCint -lm -ldl -rdynamic -lGeom
+ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -Llib -lm -ldl -rdynamic -lGeom
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = -g
 #Set INCPATH to add the inclusion paths
@@ -184,7 +184,7 @@ all: exe
 lib: staticlib 
 
 #rootdict
-exe: makeobjdir  rootdict  $(INCLUDE) $(OBJECTS)
+exe: makeobjdir rootdict   $(INCLUDE) $(OBJECTS)
 		test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
 		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME) $(OBJECTS_DIR)/*.o $(LIBS)
 

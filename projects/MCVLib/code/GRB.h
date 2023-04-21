@@ -174,7 +174,7 @@ class GRB {
 		int SaveAnalysis(TString outpath);
 		void SpectralAnalysis();
 		void CustomSpectralAnalysis();
-		ClassDef(GRB,1);				//!< required for ROOT dictionary generation using rootcint
+		ClassDef(GRB,0);				//!< required for ROOT dictionary generation using rootcint
 };
 
 

@@ -39,7 +39,7 @@ class MCVAntiCoincidence : public MCVStdAnalysis {
 		~MCVAntiCoincidence();
 		virtual int Calculate();	//!< Fit the muon Landau peaks.
 		virtual void PrintResults();	//!< Print peak energy values
-		ClassDef(MCVAntiCoincidence,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVAntiCoincidence,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

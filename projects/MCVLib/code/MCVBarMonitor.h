@@ -35,7 +35,7 @@ class MCVBarMonitor : public MCVStdAnalysis {
 		~MCVBarMonitor();
 		virtual int Calculate();	//!< Checks
 		virtual void PrintResults();	//!< Print 
-		ClassDef(MCVBarMonitor,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBarMonitor,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

@@ -84,7 +84,7 @@ ROOTCONF=-O -pipe -Wall -W -fPIC -I$(ROOTSYS)/include -I$(ROOTSYS)/include/root 
 
 # NB: e' fondamentale aggiungere -lSpectrum a ROOTCONFLIB altrimenti gli altri eseguibili non linkano! root-config non lo genera
 
-ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -lSpectrum -Llib -lCint -lm -ldl -rdynamic -lGeom
+ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -lSpectrum -Llib -lm -ldl -rdynamic -lGeom
 #ROOTCONFLIB=-L$(ROOTSYS)/lib $(ROOTGLIBS) -Llib -lCint -lm -ldl -rdynamic -lGeom
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   = -g

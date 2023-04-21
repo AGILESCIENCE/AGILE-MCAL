@@ -110,7 +110,7 @@ class MCVHisto {
 		
 		TObjArray *GetRawHisto() {return rawHisto;};
 		
-		ClassDef(MCVHisto,1);				//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVHisto,0);				//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

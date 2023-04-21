@@ -106,7 +106,7 @@ class MCVbsrMonitor_ric : public TGTransientFrame {
         void SetFileInfo(MCVFileInfo *info);	       //!< Set pointer to run info
         MCVFileInfo  *GetFileInfo() ;//!< Return pointer to run info
 	
-	ClassDef(MCVbsrMonitor_ric,1);	//!< required for ROOT dictionary generation using rootcint
+	ClassDef(MCVbsrMonitor_ric,0);	//!< required for ROOT dictionary generation using rootcint
 	//ClassDef(MCVbsrMonitor_ric,0); //!<  0 means streamer ??? The root manual is not clear :(
 
    private: 

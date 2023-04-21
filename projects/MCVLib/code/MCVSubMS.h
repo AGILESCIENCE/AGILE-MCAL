@@ -46,7 +46,7 @@ class MCVSubMS {
 		~MCVSubMS();
 		void ProcessEvent(MCALevt *evt);
 		subwin *InitSubwin(double, double);
-		ClassDef(MCVSubMS,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVSubMS,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

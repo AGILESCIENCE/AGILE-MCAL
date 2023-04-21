@@ -51,7 +51,7 @@ class MCVBurstLandauFit : public MCVStdAnalysis {
 		virtual void PrintResults();	//!< Print peak energy values
 		//virtual void SaveToFile();	//!< Save data to file
 		//void UpdateCalibrationFile();
-		ClassDef(MCVBurstLandauFit,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBurstLandauFit,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

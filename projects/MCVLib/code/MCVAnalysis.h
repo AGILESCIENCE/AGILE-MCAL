@@ -167,7 +167,7 @@ class MCVAnalysis {
 		void SetOfac(float of) {ofac = of;};		//!< Set parameter ofac for LNP calculations
 		/*!< Set over-sampling factor. See Numerical Recipes for explanation */
 		
-		ClassDef(MCVAnalysis,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVAnalysis,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 

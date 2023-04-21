@@ -70,7 +70,7 @@ class MCVBkgSubtraction : public MCVStdAnalysis {
 		void FitTotEHisto();		//!< Fit total bkg subtracte energy histo
 		void FitSimTotEHisto();		//!< Fit total bkg subtracte energy histo
 		void SimulationCompare();	//!< Compare each bar spectrum with simulations
-		ClassDef(MCVBkgSubtraction,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVBkgSubtraction,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

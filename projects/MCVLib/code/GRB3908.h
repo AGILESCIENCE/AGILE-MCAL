@@ -78,7 +78,7 @@ class GRB3908  : public GRB {
 		void SpectralAnalysisVSB();		// spectral analysis for Very Short Bursts
 		void CustomSpectralAnalysisVSB();
 		double FindTrueT0(double t0L, double dt, int thr);	// apply sub-ms time window algorithm to find the time of the spike. Return corrected t0
-		ClassDef(GRB3908,1);				//!< required for ROOT dictionary generation using rootcint
+		ClassDef(GRB3908,0);				//!< required for ROOT dictionary generation using rootcint
 };
 
 

@@ -100,7 +100,7 @@ class MCVFile3201 {
 		~MCVFile3201();	
 		void PrintResults();
 		void WriteRootFile(const char *name);
-		ClassDef(MCVFile3201,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVFile3201,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

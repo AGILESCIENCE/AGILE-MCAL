@@ -46,7 +46,7 @@ class MCVEnergyThreshold : public MCVStdAnalysis {
 		virtual int Calculate();	//!< Search for retriggering in burst data.
 		virtual void PrintResults();	//!< Print retriggering calculation results
 		virtual void SaveToFile();	//!< Save threshold calculation results to a text file
-		ClassDef(MCVEnergyThreshold,1);	//!< Required for ROOT dictionary generation using rootcint
+		ClassDef(MCVEnergyThreshold,0);	//!< Required for ROOT dictionary generation using rootcint
 };
 
 #endif

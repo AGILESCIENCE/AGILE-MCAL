@@ -237,7 +237,7 @@ class MCVFile {
 		void SetSeed(unsigned int s);		//!< set a new seed for the random number generator
 		void SetRootFileName(char *s) {rootdatapath = s;};		//!< set the name of the output root file
 		~MCVFile();	 
-		ClassDef(MCVFile,1);	//!< required for ROOT dictionary generation using rootcint
+		ClassDef(MCVFile,0);	//!< required for ROOT dictionary generation using rootcint
 };
 
 #endif

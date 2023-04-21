@@ -75,7 +75,7 @@ class MCVFilePKP3908 : public MCVFilePKP, public MCVHisto3908
         
         TTree * tdatabsr ;             //!< Pointer to the data tree
 
-        ClassDef(MCVFilePKP3908,1); //!< required for ROOT dictionary generation using rootcint
+        ClassDef(MCVFilePKP3908,0); //!< required for ROOT dictionary generation using rootcint
         //ClassDef(MCVFilePKP3908,1);  // 0 means no streamer for this class ???
 
     private:
