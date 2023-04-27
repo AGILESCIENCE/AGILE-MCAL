@@ -17,7 +17,7 @@ MAINDIR = /home/martino/C_projects/workdir/MCALSW
 
 LIBDIR = $(MAINDIR)/lib 
 #INCDIR = $(MAINDIR)/include
-INCDIR = $(LHEASOFT)/include
+INCDIR = $(CFITSIO)/include
 
 #  the header files 
 

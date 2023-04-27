@@ -5,7 +5,7 @@ Martino Marisaldi (marisaldi@iasfbo.inaf.it) - INAF/IASF-Bo - 27-Apr-2007
 How to compile
 
 export MCALSW=$HOME/agile/mcalsw
-export LHEASOFT=$CFITSIO
+export CFITSIO=$CFITSIO
 
 Installation:
 

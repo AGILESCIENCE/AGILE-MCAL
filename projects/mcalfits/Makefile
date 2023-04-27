@@ -94,7 +94,7 @@ ifdef GTB_CFITSIO_INCLUDE
 	INCPATH = -I $(INCLUDE_DIR) -I $(GTB_CFITSIO_INCLUDE) -L$(GTB_CFITSIO_LIB) -I$(GTB_COMMON_INCLUDE)  -I$(GTB_LIBQL2_INCLUDE) -L$(GTB_LIBQL2_LIB)
 else
 #	echo "set compiling flags for Marty's workstation!"
-	INCPATH = -I$(INCLUDE_DIR) -I$(LHEASOFT)/include -L$(LHEASOFT)/lib 
+	INCPATH = -I$(INCLUDE_DIR) -I$(CFITSIO)/include -L$(CFITSIO)/lib 
 endif
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -Wall  $(INCPATH) $(ROOTCONF) $(CFLAGS)
@@ -203,7 +203,7 @@ rootdict: $(OBJECTS)
 	$(DEL_FILE) $(SOURCE_DIR)/$(ROOTDICT).cpp
 	$(DEL_FILE) $(SOURCE_DIR)/$(ROOTDICT).h
 	
-	$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cpp -c  -I$(INCLUDE_DIR) -I$(LHEASOFT)/include  fitsFile.h EChannels.h phaFile.h $(SOURCE_DIR)/mcalfitsLinkDef.h
+	$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cpp -c  -I$(INCLUDE_DIR) -I$(CFITSIO)/include  fitsFile.h EChannels.h phaFile.h $(SOURCE_DIR)/mcalfitsLinkDef.h
 	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -I$(SOURCE_DIR) -c $(SOURCE_DIR)/$(ROOTDICT).cpp -o $(OBJECTS_DIR)/$(ROOTDICT).o
 
 #rootdict  IMPORTANTE

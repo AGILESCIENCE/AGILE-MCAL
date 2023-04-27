@@ -94,7 +94,7 @@ ifdef GTB_CFITSIO_INCLUDE
 	INCPATH = -I $(INCLUDE_DIR) -I $(GTB_CFITSIO_INCLUDE) -L$(GTB_CFITSIO_LIB) -I$(GTB_COMMON_INCLUDE)  -I$(GTB_LIBQL2_INCLUDE) -L$(GTB_LIBQL2_LIB)
 else
 #	echo "set compiling flags for Marty's workstation!"
-	INCPATH = -I$(INCLUDE_DIR) -I$(LHEASOFT)/include -L$(LHEASOFT)/lib 
+	INCPATH = -I$(INCLUDE_DIR) -I$(CFITSIO)/include -L$(CFITSIO)/lib 
 endif
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -Wall  $(INCPATH) $(ROOTCONF) $(CFLAGS)
