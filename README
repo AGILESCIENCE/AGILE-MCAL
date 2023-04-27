@@ -1,11 +1,15 @@
-
 Container of utility software for MCAL data analysis
 
 Martino Marisaldi (marisaldi@iasfbo.inaf.it) - INAF/IASF-Bo - 27-Apr-2007 
 
+How to compile
+
+export MCALSW=$HOME/agile/mcalsw
+export LHEASOFT=$CFITSIO
+
 Installation:
 
-> make checkout
+> make
 > make install
 
 

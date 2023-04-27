@@ -195,8 +195,8 @@ rootdict:
 	#$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cc -c  $(SOURCE_DIR)/mcalviewLinkDef.h
 	#$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -I$(SOURCE_DIR) -c $(SOURCE_DIR)/$(ROOTDICT).cc -o $(OBJECTS_DIR)/$(ROOTDICT).o
 	
-	test -h $(INCLUDE_DIR)/MCVFile.h  ||  ln -s  $(MCALSW)/include/MCVFile.h  $(INCLUDE_DIR)/MCVFile.h
-	test -h $(INCLUDE_DIR)/MCVFileInfo.h  ||  ln -s  $(MCALSW)/include/MCVFileInfo.h  $(INCLUDE_DIR)/MCVFileInfo.h
+	#test -h $(INCLUDE_DIR)/MCVFile.h  ||  ln -s  $(MCALSW)/include/MCVFile.h  $(INCLUDE_DIR)/MCVFile.h
+	#test -h $(INCLUDE_DIR)/MCVFileInfo.h  ||  ln -s  $(MCALSW)/include/MCVFileInfo.h  $(INCLUDE_DIR)/MCVFileInfo.h
 	
 	$(ROOTSYS)/bin/rootcint -f $(SOURCE_DIR)/$(ROOTDICT).cpp -c -I$(INCLUDE_DIR) -I$(MCALSW)/include mcalguess.h $(SOURCE_DIR)/mcalimagingLinkDef.h
 	$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -I$(SOURCE_DIR) -c $(SOURCE_DIR)/$(ROOTDICT).cpp -o $(OBJECTS_DIR)/$(ROOTDICT).o
