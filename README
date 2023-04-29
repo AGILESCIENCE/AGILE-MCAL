@@ -7,6 +7,7 @@ Compilation with root5.34 and root 6 by Andrea Bulgarelli - INAF/OAS Bologna - 2
 How to compile
 ----------------------------------------------------
 export MCALSW=$AGILE/mcalsw
+export LD_LIBRARY_PATH=$MCALSW/lib:$LD_LIBRARY_PATH
 
 CFITSIO variable must be set
 
