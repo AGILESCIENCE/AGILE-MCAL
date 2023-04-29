@@ -2,10 +2,13 @@ Container of utility software for MCAL data analysis
 
 Martino Marisaldi (marisaldi@iasfbo.inaf.it) - INAF/IASF-Bo - 27-Apr-2007 
 
-How to compile
+Compilation with root5.34 and root 6 by Andrea Bulgarelli - INAF/OAS Bologna - 27 Apr 2023
 
-export MCALSW=$HOME/agile/mcalsw
-export CFITSIO=$CFITSIO
+How to compile
+----------------------------------------------------
+export MCALSW=$AGILE/mcalsw
+
+CFITSIO variable must be set
 
 Installation:
 
@@ -13,8 +16,7 @@ Installation:
 > make install
 
 
-List of projects:
-
+List of projects
 ----------------------------------------------------
 
 MCVLib
